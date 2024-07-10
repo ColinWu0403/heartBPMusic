@@ -53,8 +53,12 @@ def load_genres_from_file(file_path):
         genres_data = json.load(f)
     return [genre['name'] for genre in genres_data]  # Extracting just the genre names
   
-def get_genre_seeds(sp):
-    return sp.recommendation_genre_seeds()
+# Function to load existing data from CSV
+def load_existing_data(csv_path):
+    if os.path.exists(csv_path):
+        return pd.read_csv(csv_path)
+    else:
+        return pd.DataFrame()
 
 # Define follower ranges
 follower_ranges = [
@@ -65,24 +69,31 @@ follower_ranges = [
     (5000000, 100000000) # 5 mill to Max (100 mill)
 ]
 
-
 json_file_path = os.path.join(os.path.dirname(__file__), '../data/spotify_genres.json')
 
 # Load genres from JSON file
 genres = load_genres_from_file(json_file_path)
 
-selected_genres = random.sample(genres, 50)
-
 print("Searching for random artists...")
 
 # Collecting data
-artists_data = get_random_artists(selected_genres, follower_ranges)
+artists_data = get_random_artists(genres, follower_ranges)
 
 # Convert to DataFrame
-df = pd.DataFrame(artists_data)
+df_new = pd.DataFrame(artists_data)
 
-# Save to CSV
+# Load existing data from CSV
 csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
-df.to_csv(csv_path, index=False)
+df_existing = load_existing_data(csv_path)
+
+# Remove duplicates based on artist ID
+artist_ids_existing = set(df_existing['id'])
+df_new = df_new[~df_new['id'].isin(artist_ids_existing)]
+
+# Append new data to existing DataFrame
+df_combined = pd.concat([df_existing, df_new], ignore_index=True)
+
+# Save to CSV (overwrite mode)
+df_combined.to_csv(csv_path, index=False)
 
 print(f"Data collection complete. Saved to '{csv_path}'")
