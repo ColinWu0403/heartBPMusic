@@ -86,10 +86,6 @@ df_new = pd.DataFrame(artists_data)
 csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
 df_existing = load_existing_data(csv_path)
 
-# Remove duplicates based on artist ID
-artist_ids_existing = set(df_existing['id'])
-df_new = df_new[~df_new['id'].isin(artist_ids_existing)]
-
 # Append new data to existing DataFrame
 df_combined = pd.concat([df_existing, df_new], ignore_index=True)
 
