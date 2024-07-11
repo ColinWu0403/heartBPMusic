@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .ecg import calculate_bpm
+from .src.ecg import calculate_bpm
 
 def index(request):
     return render(request, 'index.html')

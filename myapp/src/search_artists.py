@@ -38,10 +38,10 @@ def search_artists_by_genre(genre, min_followers, max_followers):
     return artists_data
 
 # Function to get random artists from a list of genres and follower ranges
-def get_random_artists(genres, follower_ranges, num_artists=100):
-    min_followers, max_followers = random.choice(follower_ranges)
+def get_random_artists(genres, follower_ranges, num_artists=10):
     artists_data = []
     for genre in genres:
+        min_followers, max_followers = random.choice(follower_ranges)
         random_artists = search_artists_by_genre(genre, min_followers, max_followers)
         artists_data.extend(random_artists)
     random.shuffle(artists_data)
@@ -76,7 +76,7 @@ genres = load_genres_from_file(json_file_path)
 
 print("Searching for random artists...")
 
-# Collecting data
+# Collect data
 artists_data = get_random_artists(genres, follower_ranges)
 
 # Convert to DataFrame
