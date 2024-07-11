@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from collections import Counter
+from collections import Counter, defaultdict
 
 # Load the song data
 def load_song_data(csv_path):
@@ -9,25 +9,57 @@ def load_song_data(csv_path):
     else:
         raise FileNotFoundError(f"{csv_path} not found.")
 
+# Define genre mappings
+genre_mapping = {
+    'pop (includes country)': ['pop', 'country'],
+    'hip hop/r&b': ['hip hop', 'rap', 'trap', 'phonk', 'r&b', 'soul'],
+    'edm/electronic': ['electronic', 'house', 'dubstep', 'trance', 'electro', 'techno', 'dance', 'rave', 'bass', 'step', 'idm', 'hardstyle', 'complextro', 'edm', 'bounce', 'dnb', 'glitch', 'lo-fi', 'synthwave', 'big room', 'neurofunk', 'ambient'],
+    'rock': ['rock', 'metal', 'punk', 'alternative', 'alt', 'core', 'emo', 'screamo'],
+    'classical/jazz': ['classical', 'orchestral', 'baroque', 'instrumental', 'romantic', 'symphony', 'jazz', 'blues', 'swing', 'big band', 'ska'],
+    'alternative/indie': ['alternative', 'indie', 'folk', 'acoustic', 'singer-songwriter', 'alt'],
+    'others': []  # To handle genres that don't fit into the above categories
+}
+
+def map_genre_to_broad_category(genre, genre_mapping):
+    categories = []
+    for broad_category, specific_genres in genre_mapping.items():
+        if any(specific_genre in genre.lower() for specific_genre in specific_genres):
+            categories.append(broad_category)
+    if not categories:
+        categories.append('others')
+    return categories
+
 # Function to calculate statistics
 def calculate_statistics(df):
     # Count occurrences of genres and artists
     genre_counter = Counter()
     artist_counter = Counter()
     key_counter = Counter()
+    bpm_by_genre = defaultdict(list)
+    represented_genres = defaultdict(set)
 
     for _, row in df.iterrows():
         genres = row['genre'].split('; ')
         artists = row['artists'].split('; ')
         key = row['key']
-
+        bpm = row['bpm']
+        
         genre_counter.update(genres)
         artist_counter.update(artists)
         key_counter.update([key])
+        
+        for genre in genres:
+            categories = map_genre_to_broad_category(genre, genre_mapping)
+            for category in categories:
+                bpm_by_genre[category].append(bpm)
+                represented_genres[category].add(genre)
 
     # Calculate average BPM
     average_bpm = df['bpm'].mean()
     std_bpm = df['bpm'].std()
+    
+    # Calculate average BPM by genre
+    average_bpm_by_genre = {genre: sum(bpm_list) / len(bpm_list) if bpm_list else 0 for genre, bpm_list in bpm_by_genre.items()}
     
     # Calculate average values for other audio features
     average_acousticness = df['acousticness'].mean()
@@ -47,6 +79,8 @@ def calculate_statistics(df):
         'Top Artists': artist_counter.most_common(50),
         'Common Keys': key_counter.most_common(12),
         'Average BPM': average_bpm,
+        'Average BPM by Genre': average_bpm_by_genre,
+        'Represented Genres': represented_genres,
         'Standard Deviation BPM': std_bpm,
         'Average Acousticness': average_acousticness,
         'Average Danceability': average_danceability,
@@ -90,6 +124,16 @@ def save_statistics_to_md(stats, file_path):
                 for item, count in value:
                     readable_key = key_mapping[int(item)]
                     f.write(f"| {readable_key} | {count} |\n")
+            elif key == 'Average BPM by Genre':
+                f.write("| Genre | Average BPM |\n")
+                f.write("| --- | ----- |\n")
+                for genre, avg_bpm in value.items():
+                    f.write(f"| {genre} | {avg_bpm} |\n")
+            elif key == 'Represented Genres':
+                f.write("| Category | Represented Genres |\n")
+                f.write("| --- | ----- |\n")
+                for category, genres in value.items():
+                    f.write(f"| {category} | {', '.join(genres)} |\n")
             elif isinstance(value, list):
                 if key == 'Top Genres':
                     f.write("| Genre | Count |\n")
