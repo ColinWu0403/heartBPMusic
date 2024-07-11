@@ -16,7 +16,7 @@ def remove_duplicates(file_path):
     print(f"Duplicates removed and saved to '{file_path}'")
 
 def main():
-    csv_path = "../data/artists_data.csv"
+    csv_path = "../data/songs_data.csv"
     remove_duplicates(csv_path)
 
 if __name__ == "__main__":
