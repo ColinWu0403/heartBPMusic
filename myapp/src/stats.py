@@ -11,11 +11,11 @@ def load_csv(csv_path):
 
 # Define genre mappings
 genre_mapping = {
-    'pop (includes country)': ['pop', 'k-pop', 'country', 'j-pop', 'europop', 'mandopop', 'new wave', 'hyperpop'],
+    'pop (includes country)': ['pop', 'k-pop', 'country', 'j-pop', 'europop', 'mandopop', 'new wave', 'hyperpop', 'boy band'],
     'hip hop/r&b': ['hip hop', 'rap', 'trap', 'phonk', 'r&b', 'soul', 'drill', 'crunk', 'soul'],
-    'edm/electronic': ['electronic', 'house', 'dubstep', 'trance', 'electro', 'techno', 'rave', 'bass', 'step', 'idm', 'hardstyle', 'complextro', 'edm', 'bounce', 'dnb', 'glitch', 'lo-fi', 'synthwave', 'big room', 'neurofunk', 'ambient', 'breakbeat'],
+    'edm/electronic': ['electronic', 'house', 'dubstep', 'trance', 'electro', 'techno', 'rave', 'bass', 'step', 'idm', 'hardstyle', 'complextro', 'edm', 'bounce', 'dnb', 'glitch', 'lo-fi', 'synthwave', 'big room', 'neurofunk', 'ambient', 'breakbeat', 'garage', 'downtempo', 'intelligent dance music', 'moombahton', 'eurodance'],
     'rock': ['rock', 'metal', 'punk', 'alternative', 'alt', 'core', 'emo rock', 'screamo', 'thrash', 'british invasion', 'merseybeat', 'permanent wave', 'grunge', 'emo punk'],
-    'classical/jazz': ['classical', 'orchestral', 'baroque', 'instrumental', 'soundtrack', 'romantic', 'symphony', 'jazz', 'blues', 'swing', 'big band', 'ska'],
+    'classical/jazz': ['classical', 'orchestral', 'baroque', 'instrumental', 'soundtrack', 'romantic', 'symphony', 'jazz', 'blues', 'swing', 'big band', 'ska', 'orchestra', 'concert', 'movie tunes', 'bebop'],
     'alternative/indie': ['alternative', 'indie', 'folk', 'acoustic', 'singer-songwriter', 'alt', 'shoegaze', 'midwest emo'],
     'others': []  # To handle genres that don't fit into the above categories
 }
@@ -75,8 +75,8 @@ def calculate_song_statistics(df):
         
     # Prepare the statistics dictionary
     stats = {
-        'Top Genres': genre_counter.most_common(50),
-        'Top Artists': artist_counter.most_common(50),
+        'Top Genres': genre_counter.most_common(100),
+        'Top Artists': artist_counter.most_common(100),
         'Common Keys': key_counter.most_common(12),
         'Average BPM': average_bpm,
         'Average BPM by Genre': average_bpm_by_genre,
@@ -91,7 +91,9 @@ def calculate_song_statistics(df):
         'Average Speechiness': average_speechiness,
         'Average Valence': average_valence,
         'Major Key Count': major_mode,
-        'Minor Key Count': minor_mode
+        'Minor Key Count': minor_mode,
+        'Total Artists': len(artist_counter),
+        'Total Genres': len(genre_counter),
     }
     
     return stats
@@ -116,25 +118,44 @@ def save_song_statistics(stats, file_path):
     
     with open(file_path, 'w') as f:
         f.write("# Song Stats\n\n")
+        
+        f.write("## General Stats\n")
+        f.write("| Statistic | Value |\n")
+        f.write("| --- | ----- |\n")
+        f.write(f"| Total Artists | {stats['Total Artists']:,} |\n")
+        f.write(f"| Total Genres | {stats['Total Genres']:,} |\n")
+        f.write("\n")
+        
+        f.write("### Genre Counts\n")
+        f.write("| Genre | Number of Songs |\n")
+        f.write("| --- | ----- |\n")
+        sorted_genres = sorted(stats.get('Represented Genres', {}).items(), key=lambda item: len(item[1]), reverse=True)
+        for genre, artists in sorted_genres:
+            f.write(f"| {genre} | {len(artists):,} |\n")
+        f.write("\n")
+        
         for key, value in stats.items():
-            f.write(f"### {key}\n")
             if key == 'Common Keys':
+                f.write(f"### {key}\n")
                 f.write("| Key | Count |\n")
                 f.write("| --- | ----- |\n")
                 for item, count in value:
                     readable_key = key_mapping[int(item)]
                     f.write(f"| {readable_key} | {count} |\n")
             elif key == 'Average BPM by Genre':
+                f.write(f"### {key}\n")
                 f.write("| Genre | Average BPM |\n")
                 f.write("| --- | ----- |\n")
                 for genre, avg_bpm in value.items():
                     f.write(f"| {genre} | {avg_bpm} |\n")
             elif key == 'Represented Genres':
+                f.write(f"### {key}\n")
                 f.write("| Category | Represented Genres |\n")
                 f.write("| --- | ----- |\n")
                 for category, genres in value.items():
                     f.write(f"| {category} | {', '.join(genres)} |\n")
             elif isinstance(value, list):
+                f.write(f"### {key}\n")
                 if key == 'Top Genres':
                     f.write("| Genre | Count |\n")
                     f.write("| --- | ----- |\n")
@@ -143,7 +164,10 @@ def save_song_statistics(stats, file_path):
                     f.write("| --- | ----- |\n")
                 for item, count in value:
                     f.write(f"| {item} | {count} |\n")
+            elif key == 'Total Artists' or key == 'Total Genres':
+                continue
             else:
+                f.write(f"### {key}\n")
                 f.write(f"{value}\n")
             f.write("\n")
 
