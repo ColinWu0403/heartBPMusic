@@ -8,9 +8,11 @@ from dotenv import load_dotenv
 from stats import genre_mapping, map_genre_to_broad_category
 from search_artists import get_specific_genres
 
-def load_artist_data(csv_path):
+def load_artist_data(csv_path, artists_to_exclude):
     if os.path.exists(csv_path):
-        return pd.read_csv(csv_path)
+        artist_df = pd.read_csv(csv_path)
+        filtered_artist_df = artist_df[~artist_df['id'].isin(artists_to_exclude)]
+        return filtered_artist_df
     else:
         raise FileNotFoundError(f"{csv_path} not found.")
 
@@ -27,24 +29,19 @@ def get_audio_features(track_ids):
 def load_existing_data(csv_path):
     if os.path.exists(csv_path):
         try:
-            return pd.read_csv(csv_path)
+            df_existing = pd.read_csv(csv_path)
+            artist_counts = df_existing['artists'].value_counts()
+            artists_to_exclude = artist_counts[artist_counts >= 10].index.tolist()
+            return df_existing, artists_to_exclude
         except pd.errors.EmptyDataError:
             # If the file is empty, create an empty DataFrame with the required columns
             return pd.DataFrame(columns=[
                 'name', 'artists', 'id', 'bpm', 'genre', 'key', 'acousticness',
                 'danceability', 'energy', 'instrumentalness', 'liveness',
                 'loudness', 'speechiness', 'mode', 'valence', 'href', 'uri'
-            ])
+            ]), []
     else:
-        return pd.DataFrame()
-
-# def get_tracks_for_artists(artist_ids):
-#     tracks = []
-#     for artist_id in artist_ids:
-#         results = sp.artist_top_tracks(artist_id)
-#         tracks.extend(results['tracks'])
-#         time.sleep(0.2)  # Add a delay to respect rate limits
-#     return tracks
+        return pd.DataFrame(), []
 
 def get_audio_features(track_ids):
     audio_features = sp.audio_features(track_ids)
@@ -96,8 +93,7 @@ def collect_song_data(artist_ids):
     df = pd.DataFrame(songs_data)
     return df
 
-def append_to_csv(df, csv_path):
-    df_existing = load_existing_data(csv_path)
+def append_to_csv(df, csv_path, df_existing):
     df_combined = pd.concat([df_existing, df], ignore_index=True)
     df_combined.to_csv(csv_path, index=False)
 
@@ -106,14 +102,18 @@ def main():
     artist_csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
     songs_csv_path = os.path.join(os.path.dirname(__file__), '../data/songs_data.csv')
 
+    # Load existing song data and get artists to exclude
+    df_existing, artists_to_exclude = load_existing_data(songs_csv_path)
+
+    # Load artist data excluding artists to exclude
+    artist_df = load_artist_data(artist_csv_path, artists_to_exclude)
+    
     option = input("Choose an option:\n1. Random Song Collection\n2. Collect by Genre Category\nEnter your choice (1 or 2): ")
     if option == '1':
         choice = input("1) Collect Batch of Songs\n2) Collect Single Artist Top Songs\nEnter Choice: ")
 
         if choice == '1':
             print("Collecting top songs for a batch of artists...")
-            # Load artist data
-            artist_df = load_artist_data(artist_csv_path)
 
             # Select a fixed number of random artists
             selected_artists = select_random_artists(artist_df, num_artists=50)
@@ -123,11 +123,9 @@ def main():
             new_song_data = collect_song_data(selected_artist_ids)
 
             # Append new song data to CSV
-            append_to_csv(new_song_data, songs_csv_path)
+            append_to_csv(new_song_data, songs_csv_path, df_existing)
         elif choice == '2':
             print("Collecting top songs for a single artist...")
-            # Load artist data
-            artist_df = load_artist_data(artist_csv_path)
 
             # Select one random artist
             selected_artist = select_random_artist(artist_df)
@@ -137,7 +135,7 @@ def main():
             new_song_data = collect_song_data([selected_artist_id])
 
             # Append new song data to CSV
-            append_to_csv(new_song_data, songs_csv_path)
+            append_to_csv(new_song_data, songs_csv_path, df_existing)
     elif option == '2':
         print("Collecting top songs by genre category...")
         print("Available genres:")
@@ -165,8 +163,6 @@ def main():
             print("Invalid genre choice.")
             return
         
-        artist_df = load_artist_data(artist_csv_path)
-        
         # Get specific genres for the selected broad genre
         specific_genres = get_specific_genres(broad_genre, genre_mapping)
         
@@ -174,15 +170,9 @@ def main():
         
         # Filter the artist dataframe for the selected specific genres
         filtered_artists_df = artist_df[artist_df['genres'].apply(lambda genres: any(specific_genre in genres for specific_genre in specific_genres))]
-
-        # if filtered_artists_df.empty:
-        #     print(f"No artists found in the {broad_genre} category.")
-        #     return
-        # else:
-        #     print(filtered_artists_df.head())
         
         # Select a fixed number of random artists from the filtered dataframe
-        selected_artists = select_random_artists(filtered_artists_df, num_artists=50)
+        selected_artists = select_random_artists(filtered_artists_df, num_artists=30)
         selected_artist_ids = selected_artists['id'].tolist()
 
         print(selected_artists[['name', 'genres']])
@@ -191,7 +181,7 @@ def main():
         new_song_data = collect_song_data(selected_artist_ids)
 
         # Append new song data to CSV
-        append_to_csv(new_song_data, songs_csv_path)  
+        append_to_csv(new_song_data, songs_csv_path, df_existing)
 
     else:
         print("Invalid choice. Exiting...")
@@ -203,8 +193,8 @@ if __name__ == "__main__":
     load_dotenv(dotenv_path)
 
     # Spotify API credentials
-    CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID2')
-    CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET2')
+    CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID3')
+    CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET3')
 
     # Authenticate with Spotify
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET))
