@@ -11,12 +11,12 @@ def load_csv(csv_path):
 
 # Define genre mappings
 genre_mapping = {
-    'pop (includes country)': ['pop', 'country'],
-    'hip hop/r&b': ['hip hop', 'rap', 'trap', 'phonk', 'r&b', 'soul', 'drill'],
-    'edm/electronic': ['electronic', 'house', 'dubstep', 'trance', 'electro', 'techno', 'rave', 'bass', 'step', 'idm', 'hardstyle', 'complextro', 'edm', 'bounce', 'dnb', 'glitch', 'lo-fi', 'synthwave', 'big room', 'neurofunk', 'ambient'],
+    'pop (includes country)': ['pop', 'k-pop', 'country', 'j-pop', 'europop', 'mandopop', 'new wave', 'hyperpop'],
+    'hip hop/r&b': ['hip hop', 'rap', 'trap', 'phonk', 'r&b', 'soul', 'drill', 'crunk', 'soul'],
+    'edm/electronic': ['electronic', 'house', 'dubstep', 'trance', 'electro', 'techno', 'rave', 'bass', 'step', 'idm', 'hardstyle', 'complextro', 'edm', 'bounce', 'dnb', 'glitch', 'lo-fi', 'synthwave', 'big room', 'neurofunk', 'ambient', 'breakbeat'],
     'rock': ['rock', 'metal', 'punk', 'alternative', 'alt', 'core', 'emo rock', 'screamo', 'thrash', 'british invasion', 'merseybeat', 'permanent wave', 'grunge', 'emo punk'],
-    'classical/jazz': ['classical', 'orchestral', 'baroque', 'instrumental', 'romantic', 'symphony', 'jazz', 'blues', 'swing', 'big band', 'ska'],
-    'alternative/indie': ['alternative', 'indie', 'folk', 'acoustic', 'singer-songwriter', 'alt'],
+    'classical/jazz': ['classical', 'orchestral', 'baroque', 'instrumental', 'soundtrack', 'romantic', 'symphony', 'jazz', 'blues', 'swing', 'big band', 'ska'],
+    'alternative/indie': ['alternative', 'indie', 'folk', 'acoustic', 'singer-songwriter', 'alt', 'shoegaze', 'midwest emo'],
     'others': []  # To handle genres that don't fit into the above categories
 }
 
@@ -182,17 +182,19 @@ def calculate_artist_statistics(df):
     # Convert sets back to lists
     all_artists_by_category = {k: list(v) for k, v in all_artists_by_category.items()}
 
-    # Get top 25 artists by category
+    # Get top 100 artists by category
     for category in top_artists_by_category:
         top_artists_by_category[category].sort(key=lambda x: x['followers'], reverse=True)
-        top_artists_by_category[category] = top_artists_by_category[category][:25]
+        top_artists_by_category[category] = top_artists_by_category[category][:100]
 
     # Prepare the statistics dictionary
     stats = {
-        'Top Genres': genre_counter.most_common(50),
+        'Top Genres': genre_counter.most_common(100),
         'Number of Artists by Category': category_artist_counter,
         'Top Artists by Category': top_artists_by_category,
-        'All Artists by Category': all_artists_by_category
+        'All Artists by Category': all_artists_by_category,
+        'Total Artists': len(processed_artists),
+        'Total Genres': len(genre_counter),
     }
 
     return stats
@@ -202,8 +204,14 @@ def save_artist_statistics(stats, file_path):
     with open(file_path, 'w') as f:
         f.write("# Artist Stats\n\n")
 
+        f.write("## General Stats\n")
+        f.write("| Statistic | Value |\n")
+        f.write("| --- | ----- |\n")
+        f.write(f"| Total Artists | {stats['Total Artists']:,} |\n")
+        f.write(f"| Total Genres | {stats['Total Genres']:,} |\n")
+
         # Top Genres
-        f.write("### Top Genres\n")
+        f.write("### Top 100 Genres\n")
         f.write("| Genre | Number of Artists |\n")
         f.write("| --- | ----- |\n")
         for genre, count in stats['Top Genres']:
@@ -220,7 +228,7 @@ def save_artist_statistics(stats, file_path):
 
         # Top Artists by Category
         for category, artists in stats['Top Artists by Category'].items():
-            f.write(f"### Top Artists for {category}\n")
+            f.write(f"### Top 100 Artists for {category}\n")
             f.write("| Artist Name | Followers | Popularity |\n")
             f.write("| --- | ----- | ----- |\n")
             for artist in artists:
@@ -236,7 +244,7 @@ def save_artist_statistics(stats, file_path):
         f.write("\n")
 
 def main():
-    choice = input("Choose between Song Statistics or Artist Statistics: ")
+    choice = input("1) Song Statistics\n2) Artist Statistics\nChoose an option: ")
     
     if choice == '1':
         print("Song Statistics")
