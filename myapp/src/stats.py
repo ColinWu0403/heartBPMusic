@@ -186,7 +186,7 @@ def save_song_statistics(stats, file_path):
         f.write(f"| Total Genres | {stats['Total Genres']:,} |\n")
         f.write("\n")
         
-        f.write("### Genre Counts\n")
+        f.write("### Genre Category Counts\n")
         f.write("| Genre | Number of Songs |\n")
         f.write("| --- | ----- |\n")
         sorted_genres = sorted(stats.get('Represented Genres', {}).items(), key=lambda item: len(item[1]), reverse=True)
