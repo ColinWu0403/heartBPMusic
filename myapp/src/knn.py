@@ -1,61 +1,116 @@
+import joblib
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import random
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import NearestNeighbors
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
+from stats import genre_mapping
 
-# Load data
-df = pd.read_csv('../data/songs_data.csv')
 
-# Select relevant features
-features = df[['bpm', 'acousticness', 'danceability', 'energy', 'instrumentalness', 
-               'liveness', 'loudness', 'speechiness', 'mode', 'valence']]
+def load_data(file_path):
+    return pd.read_csv(file_path)
 
-# Standardize features
-scaler = StandardScaler()
-scaled_features = scaler.fit_transform(features)
 
-# Train Nearest Neighbors model
-n_neighbors = 1  # You can adjust this number
-neighbors = NearestNeighbors(n_neighbors=n_neighbors, algorithm='ball_tree')
-neighbors.fit(scaled_features)
+def map_genre_weighted(genre, genre_mapping):
+    category_counts = {}
+    for broad_category, specific_genres in genre_mapping.items():
+        count = sum(1 for specific_genre in specific_genres if specific_genre in genre.lower())
+        if count > 0:
+            category_counts[broad_category] = count
 
-# Function to find nearest songs
-def find_similar_songs(user_features):
+    if not category_counts:
+        return 'others'
+
+    # Find the category with the highest count
+    max_count = max(category_counts.values())
+    top_categories = [category for category, count in category_counts.items() if count == max_count]
+
+    # Handle ties: select a random category from the top categories
+    return random.choice(top_categories)
+
+
+def map_genres_to_categories(df, genre_mapping):
+    df['category'] = df['genre'].apply(lambda genre: map_genre_weighted(genre, genre_mapping))
+    return df
+
+
+def select_scale_train(df):
+    features = df[['bpm', 'acousticness', 'danceability', 'energy', 'instrumentalness',
+                   'liveness', 'loudness', 'speechiness', 'mode', 'valence']]
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(features)
+
+    neighbors = NearestNeighbors(n_neighbors=1, algorithm='ball_tree')
+    neighbors.fit(scaled_features)
+
+    joblib.dump(scaler, '../models/scaler.pkl')
+    joblib.dump(neighbors, '../models/neighbors.pkl')
+
+    return scaled_features, scaler, neighbors
+
+
+def find_similar_song(neighbors, scaler, df, user_features):
     user_features_scaled = scaler.transform([user_features])
     distances, indices = neighbors.kneighbors(user_features_scaled)
     return df.iloc[indices[0]]
 
-# Example user input
-user_features = [120, 0.5, 0.8, 0.5, 0.1, 0.2, -7, 0.1, 1, 0.9]  # Example features
 
-columns_to_display = ['name', 'artists', 'bpm', 'genre', 'key', 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'mode', 'valence']
-similar_songs = find_similar_songs(user_features)
-df_filtered = similar_songs[columns_to_display]
+def find_closest_song(user_features):
+    scaler = joblib.load('../models/scaler.pkl')
+    neighbors = joblib.load('../models/neighbors.pkl')
+    df = pd.read_csv('../data/songs_data.csv')
 
-md_table = df_filtered.to_markdown(index=True)
+    user_features_scaled = scaler.transform([user_features])
+    distances, indices = neighbors.kneighbors(user_features_scaled)
+    return df.iloc[indices[0]]
 
-# File path to save the markdown table
-file_path = '../data/output.md'
 
-# Write the markdown table to a file
-with open(file_path, 'w') as f:
-    f.write(md_table)
+def save_markdown_table(df_filtered, file_path):
+    md_table = df_filtered.to_markdown(index=True)
+    with open(file_path, 'w') as f:
+        f.write(md_table)
 
-pca = PCA(n_components=2)
-pca_features = pca.fit_transform(scaled_features)
 
-# Add PCA components to the DataFrame
-df['PCA1'] = pca_features[:, 0]
-df['PCA2'] = pca_features[:, 1]
+def apply_pca(scaled_features, n_components=2):
+    pca = PCA(n_components=n_components)
+    pca_features = pca.fit_transform(scaled_features)
+    return pca_features
 
-# Plot the clusters
-plt.figure(figsize=(10, 8))
-sns.scatterplot(data=df, x='PCA1', y='PCA2', hue='genre', palette='tab10', s=100, alpha=0.6)
-plt.title('Genre Clusters using PCA')
-plt.xlabel('PCA Component 1')
-plt.ylabel('PCA Component 2')
-plt.legend(loc='best', bbox_to_anchor=(1, 1), ncol=1)
-plt.show()
+
+def plot_pca_clusters(df, pca_features):
+    df['PCA1'] = pca_features[:, 0]
+    df['PCA2'] = pca_features[:, 1]
+
+    plt.figure(figsize=(28, 12))
+    sns.scatterplot(data=df, x='PCA1', y='PCA2', hue='category', palette='tab10', s=100, alpha=0.6)
+    plt.title('Genre Clusters using PCA')
+    plt.xlabel('PCA Component 1')
+    plt.ylabel('PCA Component 2')
+    plt.legend(loc='best', bbox_to_anchor=(1, 1), ncol=1)
+    plt.show()
+
+
+def main():
+    file_path = '../data/songs_data.csv'
+    df = load_data(file_path)
+    df = map_genres_to_categories(df, genre_mapping)
+    scaled_features, scaler, neighbors = select_scale_train(df)
+
+    user_features = [150, 0.5, 0.8, 0.5, 0.1, 0.2, -7, 0.1, 1, 0.9]  # Example features
+    similar_songs = find_closest_song(user_features)
+
+    columns_to_display = ['name', 'artists', 'bpm', 'genre', 'key', 'acousticness', 'danceability', 'energy',
+                          'instrumentalness', 'liveness', 'loudness', 'speechiness', 'mode', 'valence']
+    df_filtered = similar_songs[columns_to_display]
+
+    output_file_path = '../data/output.md'
+    save_markdown_table(df_filtered, output_file_path)
+
+    pca_features = apply_pca(scaled_features)
+    plot_pca_clusters(df, pca_features)
+
+
+if __name__ == "__main__":
+    main()
