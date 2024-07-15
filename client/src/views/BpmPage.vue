@@ -17,6 +17,14 @@
     </button>
 
     <p class="text-white text-lg text-center">BPM Value: {{ bpm }}</p>
+
+    <router-link
+      v-if="bpm !== null"
+      :to="'/questions'"
+      class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-blue-500 transition-all duration-150 ease-in font-bold"
+    >
+      Next
+    </router-link>
   </div>
 </template>
 
