@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from collections import Counter, defaultdict
 
+
 # Load the song data
 def load_csv(csv_path):
     if os.path.exists(csv_path):
@@ -9,20 +10,30 @@ def load_csv(csv_path):
     else:
         raise FileNotFoundError(f"{csv_path} not found.")
 
+
 def get_total_songs(csv_path):
     df = load_csv(csv_path)
     return len(df)
 
+
 # Define genre mappings
 genre_mapping = {
-    'pop (includes country)': ['pop', 'k-pop', 'country', 'j-pop', 'europop', 'mandopop', 'new wave', 'hyperpop', 'boy band'],
+    'pop (includes country)': ['pop', 'k-pop', 'country', 'j-pop', 'europop', 'mandopop', 'new wave', 'hyperpop',
+                               'boy band'],
     'hip hop/r&b': ['hip hop', 'rap', 'trap', 'phonk', 'r&b', 'soul', 'drill', 'crunk', 'soul'],
-    'edm/electronic': ['electronic', 'house', 'dubstep', 'trance', 'electro', 'techno', 'rave', 'bass', 'step', 'idm', 'hardstyle', 'complextro', 'edm', 'bounce', 'dnb', 'glitch', 'lo-fi', 'synthwave', 'big room', 'neurofunk', 'ambient', 'breakbeat', 'garage', 'downtempo', 'intelligent dance music', 'moombahton', 'eurodance'],
-    'rock': ['rock', 'metal', 'punk', 'alternative', 'alt', 'core', 'emo rock', 'screamo', 'thrash', 'british invasion', 'merseybeat', 'permanent wave', 'grunge', 'emo punk'],
-    'classical/jazz': ['classical', 'orchestral', 'baroque', 'instrumental', 'soundtrack', 'romantic', 'symphony', 'jazz', 'blues', 'swing', 'big band', 'ska', 'orchestra', 'concert', 'movie tunes', 'bebop'],
-    'alternative/indie': ['alternative', 'indie', 'folk', 'acoustic', 'singer-songwriter', 'alt', 'shoegaze', 'midwest emo'],
+    'edm/electronic': ['electronic', 'house', 'dubstep', 'trance', 'electro', 'techno', 'rave', 'bass', 'step', 'idm',
+                       'hardstyle', 'complextro', 'edm', 'bounce', 'dnb', 'glitch', 'lo-fi', 'synthwave', 'big room',
+                       'neurofunk', 'ambient', 'breakbeat', 'garage', 'downtempo', 'intelligent dance music',
+                       'moombahton', 'eurodance'],
+    'rock': ['rock', 'metal', 'punk', 'alternative', 'alt', 'core', 'emo rock', 'screamo', 'thrash', 'british invasion',
+             'merseybeat', 'permanent wave', 'grunge', 'emo punk'],
+    'classical/jazz': ['classical', 'orchestral', 'baroque', 'instrumental', 'soundtrack', 'romantic', 'symphony',
+                       'jazz', 'blues', 'swing', 'big band', 'ska', 'orchestra', 'concert', 'movie tunes', 'bebop'],
+    'alternative/indie': ['alternative', 'indie', 'folk', 'acoustic', 'singer-songwriter', 'alt', 'shoegaze',
+                          'midwest emo'],
     'others': []  # To handle genres that don't fit into the above categories
 }
+
 
 def map_genre_to_broad_category(genre, genre_mapping):
     categories = []
@@ -33,9 +44,12 @@ def map_genre_to_broad_category(genre, genre_mapping):
         categories.append('others')
     return categories
 
+
 # Calculate average values for other audio features by genre
 def calculate_average(feature_dict):
-    return {genre: sum(feature_list) / len(feature_list) if feature_list else 0 for genre, feature_list in feature_dict.items()}
+    return {genre: sum(feature_list) / len(feature_list) if feature_list else 0 for genre, feature_list in
+            feature_dict.items()}
+
 
 # Function to calculate statistics
 def calculate_song_statistics(df):
@@ -54,7 +68,7 @@ def calculate_song_statistics(df):
     speechiness_by_genre = defaultdict(list)
     valence_by_genre = defaultdict(list)
     mode_by_genre = defaultdict(lambda: {'major': 0, 'minor': 0})
-        
+
     for _, row in df.iterrows():
         genres = row['genre'].split('; ')
         artists = row['artists'].split('; ')
@@ -69,11 +83,11 @@ def calculate_song_statistics(df):
         speechiness = row['speechiness']
         valence = row['valence']
         mode = row['mode']
-        
+
         genre_counter.update(genres)
         artist_counter.update(artists)
         key_counter.update([key])
-        
+
         for genre in genres:
             categories = map_genre_to_broad_category(genre, genre_mapping)
             for category in categories:
@@ -91,15 +105,16 @@ def calculate_song_statistics(df):
                     mode_by_genre[category]['major'] += 1
                 else:
                     mode_by_genre[category]['minor'] += 1
-  
+
     # Calculate average BPM
     average_bpm = df['bpm'].mean()
     std_bpm = df['bpm'].std()
-    
+
     # Calculate average values by genre
-    average_bpm_by_genre = {genre: sum(bpm_list) / len(bpm_list) if bpm_list else 0 for genre, bpm_list in bpm_by_genre.items()}
+    average_bpm_by_genre = {genre: sum(bpm_list) / len(bpm_list) if bpm_list else 0 for genre, bpm_list in
+                            bpm_by_genre.items()}
     std_bpm_by_genre = {genre: pd.Series(bpm_list).std() if bpm_list else 0 for genre, bpm_list in bpm_by_genre.items()}
-    
+
     average_acousticness_by_genre = calculate_average(acousticness_by_genre)
     average_danceability_by_genre = calculate_average(danceability_by_genre)
     average_energy_by_genre = calculate_average(energy_by_genre)
@@ -108,7 +123,7 @@ def calculate_song_statistics(df):
     average_loudness_by_genre = calculate_average(loudness_by_genre)
     average_speechiness_by_genre = calculate_average(speechiness_by_genre)
     average_valence_by_genre = calculate_average(valence_by_genre)
-    
+
     # Calculate average values for other audio features
     average_acousticness = df['acousticness'].mean()
     average_danceability = df['danceability'].mean()
@@ -120,7 +135,7 @@ def calculate_song_statistics(df):
     average_valence = df['valence'].mean()
     major_mode = df['mode'].value_counts().get(1, 0)
     minor_mode = df['mode'].value_counts().get(0, 0)
-        
+
     # Prepare the statistics dictionary
     stats = {
         'Top Genres': genre_counter.most_common(100),
@@ -150,12 +165,13 @@ def calculate_song_statistics(df):
         'Average Speechiness by Genre': average_speechiness_by_genre,
         'Average Valence by Genre': average_valence_by_genre,
         'Mode by Genre': mode_by_genre,
-        
+
         'Total Artists': len(artist_counter),
         'Total Genres': len(genre_counter),
     }
-    
+
     return stats
+
 
 # Save song statistics to Markdown File
 def save_song_statistics(stats, file_path):
@@ -174,10 +190,10 @@ def save_song_statistics(stats, file_path):
         10: "A♯/B♭",
         11: "B"
     }
-    
+
     with open(file_path, 'w') as f:
         f.write("# Song Stats\n\n")
-        
+
         f.write("## General Stats\n")
         f.write("| Statistic | Value |\n")
         f.write("| --- | ----- |\n")
@@ -185,7 +201,7 @@ def save_song_statistics(stats, file_path):
         f.write(f"| Total Artists | {stats['Total Artists']:,} |\n")
         f.write(f"| Total Genres | {stats['Total Genres']:,} |\n")
         f.write("\n")
-        
+
         f.write("### Genre Category Counts\n")
         f.write("| Genre | Number of Songs |\n")
         f.write("| --- | ----- |\n")
@@ -193,7 +209,21 @@ def save_song_statistics(stats, file_path):
         for genre, artists in sorted_genres:
             f.write(f"| {genre} | {len(artists):,} |\n")
         f.write("\n")
-        
+
+        f.write("### Top Genres\n")
+        f.write("| Genre | Number of Songs |\n")
+        f.write("| --- | ----- |\n")
+        for item, count in stats['Top Genres']:
+            f.write(f"| {item} | {count} |\n")
+        f.write("\n")
+
+        f.write("### Top Artists\n")
+        f.write("| Artist | Number of Songs |\n")
+        f.write("| --- | ----- |\n")
+        for item, count in stats['Top Artists']:
+            f.write(f"| {item} | {count} |\n")
+        f.write("\n")
+
         f.write("### Common Keys\n")
         f.write("| Key | Count |\n")
         f.write("| --- | ----- |\n")
@@ -201,13 +231,13 @@ def save_song_statistics(stats, file_path):
             readable_key = key_mapping[int(item)]
             f.write(f"| {readable_key} | {count} |\n")
         f.write("\n")
-        
+
         overall_stats_keys = [
-            'Average BPM', 'Standard Deviation BPM', 'Average Acousticness', 'Average Danceability', 
-            'Average Energy', 'Average Instrumentalness', 'Average Liveness', 'Average Loudness', 
+            'Average BPM', 'Standard Deviation BPM', 'Average Acousticness', 'Average Danceability',
+            'Average Energy', 'Average Instrumentalness', 'Average Liveness', 'Average Loudness',
             'Average Speechiness', 'Average Valence'
         ]
-        
+
         genre_stats_keys = {
             'Average BPM': 'Average BPM by Genre',
             'Standard Deviation BPM': 'Standard Deviation BPM by Genre',
@@ -220,13 +250,13 @@ def save_song_statistics(stats, file_path):
             'Average Speechiness': 'Average Speechiness by Genre',
             'Average Valence': 'Average Valence by Genre',
         }
-        
+
         # Print Overall Averages and Average Values by Genre
         f.write("## Song Statistics\n")
         for overall_key in overall_stats_keys:
             f.write(f"### {overall_key}\n")
             f.write(f"{stats[overall_key]}\n\n")
-            
+
             genre_key = genre_stats_keys[overall_key]
             if genre_key in stats:
                 f.write(f"### {genre_key}\n")
@@ -235,15 +265,17 @@ def save_song_statistics(stats, file_path):
                 for genre, avg_value in sorted(stats[genre_key].items(), key=lambda x: x[1], reverse=True):
                     f.write(f"| {genre} | {avg_value} |\n")
                 f.write("\n")
-        
+
         f.write("### Mode Statistics\n")
         f.write(f"#### Total Major: {stats['Major Key Count']}\n")
         f.write(f"#### Total Minor: {stats['Minor Key Count']}\n\n")
-        
+
         f.write("### Mode by Genre\n")
         f.write("| Genre | Major | Minor | Ratio (Major:Minor) |\n")
         f.write("| --- | ----- | ----- | ----- |\n")
-        sorted_modes = sorted(stats['Mode by Genre'].items(), key=lambda x: (x[1]['major'] / x[1]['minor']) if x[1]['minor'] != 0 else float('inf'), reverse=True)
+        sorted_modes = sorted(stats['Mode by Genre'].items(),
+                              key=lambda x: (x[1]['major'] / x[1]['minor']) if x[1]['minor'] != 0 else float('inf'),
+                              reverse=True)
         for genre, mode_counts in sorted_modes:
             major = mode_counts['major']
             minor = mode_counts['minor']
@@ -259,6 +291,7 @@ def save_song_statistics(stats, file_path):
             f.write(f"| {category} | {', '.join(genres)} |\n")
         f.write("\n")
 
+
 # Function to calculate artist statistics
 def calculate_artist_statistics(df):
     # Count occurrences of genres and artists
@@ -267,17 +300,17 @@ def calculate_artist_statistics(df):
     top_artists_by_category = defaultdict(list)
     all_artists_by_category = defaultdict(set)
     processed_artists = set()
-    
+
     for _, row in df.iterrows():
         artist_name = row['name']
         if artist_name in processed_artists:
             continue
         processed_artists.add(artist_name)
-        
+
         followers = row['followers']
         popularity = row['popularity']
         genres = row['genres'].strip('"').split(', ')
-        
+
         artist_data = {'name': artist_name, 'followers': followers, 'popularity': popularity}
 
         artist_categories = set()
@@ -285,12 +318,12 @@ def calculate_artist_statistics(df):
             genre_counter[genre] += 1
             categories = map_genre_to_broad_category(genre, genre_mapping)
             artist_categories.update(categories)
-        
+
         for category in artist_categories:
             category_artist_counter[category] += 1
             top_artists_by_category[category].append(artist_data)
             all_artists_by_category[category].add(artist_name)
-    
+
     # Convert sets back to lists
     all_artists_by_category = {k: list(v) for k, v in all_artists_by_category.items()}
 
@@ -310,6 +343,7 @@ def calculate_artist_statistics(df):
     }
 
     return stats
+
 
 # Save artist statistics to Markdown File
 def save_artist_statistics(stats, file_path):
@@ -355,12 +389,13 @@ def save_artist_statistics(stats, file_path):
             f.write(f"| {category} | {', '.join(artists)} |\n")
         f.write("\n")
 
+
 def main():
     choice = input("1) Song Statistics\n2) Artist Statistics\nChoose an option: ")
-    
+
     if choice == '1':
         print("Song Statistics")
-        
+
         # Paths to files
         songs_csv_path = os.path.join(os.path.dirname(__file__), '../data/songs_data.csv')
         stats_md_path = os.path.join(os.path.dirname(__file__), '../data/song_stats.md')
@@ -375,7 +410,7 @@ def main():
         save_song_statistics(song_stats, stats_md_path)
     elif choice == '2':
         print("Artist Statistics")
-        
+
         # Paths to files
         artists_csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
         stats_md_path = os.path.join(os.path.dirname(__file__), '../data/artist_stats.md')
@@ -390,7 +425,8 @@ def main():
         save_artist_statistics(artist_stats, stats_md_path)
     else:
         print("Invalid choice. Please choose 1 or 2.")
-    
+
+
 if __name__ == "__main__":
     total_songs = get_total_songs('../data/songs_data.csv')
     main()
