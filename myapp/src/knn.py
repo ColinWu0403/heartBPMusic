@@ -3,10 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import random
+import os
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import NearestNeighbors
 from sklearn.decomposition import PCA
-from stats import genre_mapping
+from .stats import genre_mapping
 
 
 def load_data(file_path):
@@ -45,8 +46,14 @@ def select_scale_train(df):
     neighbors = NearestNeighbors(n_neighbors=1, algorithm='ball_tree')
     neighbors.fit(scaled_features)
 
-    joblib.dump(scaler, '../models/scaler.pkl')
-    joblib.dump(neighbors, '../models/neighbors.pkl')
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Define paths relative to the current directory
+    scaler_path = os.path.join(current_dir, '../models/scaler.pkl')
+    neighbors_path = os.path.join(current_dir, '../models/neighbors.pkl')
+
+    joblib.dump(scaler, scaler_path)
+    joblib.dump(neighbors, neighbors_path)
 
     return scaled_features, scaler, neighbors
 
@@ -58,13 +65,20 @@ def find_similar_song(neighbors, scaler, df, user_features):
 
 
 def find_closest_song(user_features):
-    scaler = joblib.load('../models/scaler.pkl')
-    neighbors = joblib.load('../models/neighbors.pkl')
-    df = pd.read_csv('../data/songs_data.csv')
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Define paths relative to the current directory
+    scaler_path = os.path.join(current_dir, '../models/scaler.pkl')
+    neighbors_path = os.path.join(current_dir, '../models/neighbors.pkl')
+
+    scaler = joblib.load(scaler_path)
+    neighbors = joblib.load(neighbors_path)
+    df = pd.read_csv(os.path.join(current_dir, '../data/songs_data.csv'))
 
     user_features_scaled = scaler.transform([user_features])
     distances, indices = neighbors.kneighbors(user_features_scaled)
-    return df.iloc[indices[0]]
+
+    return df.iloc[indices[0]], df.iloc[indices[0]].to_dict()
 
 
 def save_markdown_table(df_filtered, file_path):
@@ -92,25 +106,28 @@ def plot_pca_clusters(df, pca_features):
     plt.show()
 
 
-def main():
-    file_path = '../data/songs_data.csv'
-    df = load_data(file_path)
-    df = map_genres_to_categories(df, genre_mapping)
-    scaled_features, scaler, neighbors = select_scale_train(df)
-
-    user_features = [150, 0.5, 0.8, 0.5, 0.1, 0.2, -7, 0.1, 1, 0.9]  # Example features
-    similar_songs = find_closest_song(user_features)
-
-    columns_to_display = ['name', 'artists', 'bpm', 'genre', 'key', 'acousticness', 'danceability', 'energy',
-                          'instrumentalness', 'liveness', 'loudness', 'speechiness', 'mode', 'valence']
-    df_filtered = similar_songs[columns_to_display]
-
-    output_file_path = '../data/output.md'
-    save_markdown_table(df_filtered, output_file_path)
-
-    pca_features = apply_pca(scaled_features)
-    plot_pca_clusters(df, pca_features)
-
-
-if __name__ == "__main__":
-    main()
+# def main():
+#     current_dir = os.path.dirname(os.path.abspath(__file__))
+#
+#     file_path = os.path.join(current_dir, '../data/songs_data.csv')
+#     df = load_data(file_path)
+#
+#     df = map_genres_to_categories(df, genre_mapping)
+#     scaled_features, scaler, neighbors = select_scale_train(df)
+#
+#     user_features = [150, 0.5, 0.8, 0.5, 0.1, 0.2, -7, 0.1, 1, 0.9]  # Example features
+#     similar_songs = find_closest_song(user_features)
+#
+#     columns_to_display = ['name', 'artists', 'bpm', 'genre', 'key', 'acousticness', 'danceability', 'energy',
+#                           'instrumentalness', 'liveness', 'loudness', 'speechiness', 'mode', 'valence']
+#     df_filtered = similar_songs[columns_to_display]
+#
+#     output_file_path = os.path.join(current_dir, '../data/output.md')
+#     save_markdown_table(df_filtered, output_file_path)
+#
+#     pca_features = apply_pca(scaled_features)
+#     plot_pca_clusters(df, pca_features)
+#
+#
+# if __name__ == "__main__":
+#     main()

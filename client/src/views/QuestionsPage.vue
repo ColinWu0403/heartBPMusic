@@ -1,7 +1,9 @@
 <template>
-  <div class="flex flex-col items-center justify-center h-screen">
+  <div class="flex flex-col items-center justify-center h-full">
     <h1 class="text-white text-3xl font-bold mb-4">Questions</h1>
     <p class="text-white text-lg text-center">BPM Value: {{ bpm }}</p>
+
+    <!-- Submission Form -->
     <form @submit.prevent="submitQuestions">
       <div class="mb-4">
         <label for="acousticness" class="text-white">Acousticness:</label>
@@ -46,6 +48,29 @@
         Submit
       </button>
     </form>
+
+    <!-- Displaying the returned song details -->
+    <div v-if="song">
+      <h2 class="text-white text-2xl font-bold mt-6 mb-2">Recommended Song</h2>
+      <div class="text-white">
+        <p><strong>Name:</strong> {{ song.name }}</p>
+        <p><strong>Artists:</strong> {{ song.artists }}</p>
+        <p><strong>BPM:</strong> {{ song.bpm }}</p>
+        <p><strong>Genre:</strong> {{ song.genre }}</p>
+        <p><strong>Key:</strong> {{ song.key }}</p>
+        <p><strong>Acousticness:</strong> {{ song.acousticness }}</p>
+        <p><strong>Danceability:</strong> {{ song.danceability }}</p>
+        <p><strong>Energy:</strong> {{ song.energy }}</p>
+        <p><strong>Instrumentalness:</strong> {{ song.instrumentalness }}</p>
+        <p><strong>Liveness:</strong> {{ song.liveness }}</p>
+        <p><strong>Loudness:</strong> {{ song.loudness }}</p>
+        <p><strong>Speechiness:</strong> {{ song.speechiness }}</p>
+        <p><strong>Mode:</strong> {{ song.mode }}</p>
+        <p><strong>Valence:</strong> {{ song.valence }}</p>
+        <p><strong>Spotify Link:</strong> <a :href="song.href" target="_blank">{{ song.href }}</a></p>
+        <p><strong>Spotify URI:</strong> {{ song.uri }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -53,28 +78,31 @@
 import {ref, onMounted} from "vue";
 
 const bpm = ref(null);
-const acousticness = ref(0.0);
-const danceability = ref(0.0);
-const energy = ref(0.0);
-const instrumentalness = ref(0.0);
-const liveness = ref(0.0);
-const loudness = ref(0.0);
-const speechiness = ref(0.0);
-const mode = ref(0);
-const valence = ref(0.0);
+const song = ref(null); // To store the returned song details
 
 const fetchBpmFromSession = async () => {
-  const response = await fetch("/api/get-bpm-from-session"); // Adjust URL if needed
-  const data = await response.json();
-  bpm.value = data.bpm;
+  try {
+    const response = await fetch("/api/get-bpm-from-session"); // Adjust URL if needed
+    const data = await response.json();
+    bpm.value = data.bpm;
+  } catch (error) {
+    console.error("Error fetching BPM:", error);
+  }
 };
 
 onMounted(() => {
   fetchBpmFromSession();
 });
 
+function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : '';
+}
+
 const submitQuestions = async () => {
-  const data = {
+  const csrftoken = getCookie('csrftoken');  // Function to retrieve CSRF token from cookies
+
+  const formData = {
     acousticness: acousticness.value,
     danceability: danceability.value,
     energy: energy.value,
@@ -84,22 +112,26 @@ const submitQuestions = async () => {
     speechiness: speechiness.value,
     mode: mode.value,
     valence: valence.value,
-    // Add other fields
   };
 
-  const response = await fetch("/api/submit-questions/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    const response = await fetch("/api/submit-questions/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken, // include csrf token
+      },
+      body: JSON.stringify(formData),
+    });
 
-  const result = await response.json();
-  if (result.status === "success") {
-    alert("Questions submitted successfully");
-  } else {
-    alert("Error submitting questions");
+    if (response.ok) {
+      const result = await response.json();
+      song.value = result; // Store the returned song details
+    } else {
+      console.error("Failed to submit questions:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error submitting questions:", error);
   }
 };
 </script>
