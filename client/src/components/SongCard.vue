@@ -18,6 +18,11 @@
         <p class="text-md"><span class="font-bold">Mode:</span> {{ song.mode }}</p>
         <p class="text-md"><span class="font-bold">Valence:</span> {{ song.valence }}</p>
       </div>
+      <button
+        class="inline-flex w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+      >
+        <router-link to="/questions">Back</router-link>
+      </button>
     </div>
     <div class="min-w-[460px] flex justify-center items-center w-40 h-90">
       <iframe
