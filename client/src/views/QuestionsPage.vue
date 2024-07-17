@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col items-center justify-center h-full">
+  <div class="flex flex-col items-center justify-center h-full py-4">
     <h1 class="text-white text-3xl font-bold mb-4">Questions</h1>
-    <p class="text-white text-lg text-center">BPM Value: {{ bpm }}</p>
+    <p class="text-white text-lg text-center mb-4">BPM Value: {{ bpm }}</p>
 
     <!-- Submission Form -->
     <form @submit.prevent="submitQuestions">
@@ -48,29 +48,6 @@
         Submit
       </button>
     </form>
-
-    <!-- Displaying the returned song details -->
-    <div v-if="song">
-      <h2 class="text-white text-2xl font-bold mt-6 mb-2">Recommended Song</h2>
-      <div class="text-white">
-        <p><strong>Name:</strong> {{ song.name }}</p>
-        <p><strong>Artists:</strong> {{ song.artists }}</p>
-        <p><strong>BPM:</strong> {{ song.bpm }}</p>
-        <p><strong>Genre:</strong> {{ song.genre }}</p>
-        <p><strong>Key:</strong> {{ song.key }}</p>
-        <p><strong>Acousticness:</strong> {{ song.acousticness }}</p>
-        <p><strong>Danceability:</strong> {{ song.danceability }}</p>
-        <p><strong>Energy:</strong> {{ song.energy }}</p>
-        <p><strong>Instrumentalness:</strong> {{ song.instrumentalness }}</p>
-        <p><strong>Liveness:</strong> {{ song.liveness }}</p>
-        <p><strong>Loudness:</strong> {{ song.loudness }}</p>
-        <p><strong>Speechiness:</strong> {{ song.speechiness }}</p>
-        <p><strong>Mode:</strong> {{ song.mode }}</p>
-        <p><strong>Valence:</strong> {{ song.valence }}</p>
-        <p><strong>Spotify Link:</strong> <a :href="song.href" target="_blank">{{ song.href }}</a></p>
-        <p><strong>Spotify URI:</strong> {{ song.uri }}</p>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -78,7 +55,6 @@
 import {ref, onMounted} from "vue";
 
 const bpm = ref(null);
-const song = ref(null); // To store the returned song details
 
 const fetchBpmFromSession = async () => {
   try {
@@ -126,7 +102,9 @@ const submitQuestions = async () => {
 
     if (response.ok) {
       const result = await response.json();
-      song.value = result; // Store the returned song details
+
+      console.log("Submitted successfully:", result);
+      window.location.href = '/music';
     } else {
       console.error("Failed to submit questions:", response.statusText);
     }
