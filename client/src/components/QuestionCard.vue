@@ -1,25 +1,19 @@
 <!-- components/Question.vue -->
 <template>
-  <div class="mb-4">
-    <label :for="id" class="text-xl font-bold text-white">{{ question.title }}</label>
-    <div v-if="isRadio">
-      <div v-for="option in question.options" :key="option.value">
+  <div class="mb-4 flex flex-col">
+    <label :for="id" class="text-2xl font-bold text-cyan-200">{{ question.title }}</label>
+    <div class="mt-2">
+      <div v-for="option in question.options" :key="option.value" class="mb-1 flex items-center space-x-2">
         <input
           :type="type"
           :id="option.value"
           :value="option.value"
           :checked="internalModelValue === option.value"
           @change="updateValue(option.value)"
+          class="h-4 w-4"
         />
         <label :for="option.value" class="text-md text-white">{{ option.label }}</label>
       </div>
-    </div>
-    <div v-else>
-      <select v-model="internalModelValue" :id="id" class="ml-2">
-        <option v-for="option in question.options" :key="option.value" :value="option.value" class="text-md text-white">
-          {{ option.label }}
-        </option>
-      </select>
     </div>
   </div>
 </template>

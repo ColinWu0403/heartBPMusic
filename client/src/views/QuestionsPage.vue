@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center justify-center h-full py-4">
     <h1 class="text-white text-4xl font-bold mb-4">Music Preferences</h1>
-    <p class="text-white text-lg text-center mb-4">BPM Value: {{ bpm }}</p>
+    <p class="text-white text-2xl text-center mb-4">BPM Value: {{ bpm }}</p>
 
     <!-- Submission Form -->
     <form @submit.prevent="submitQuestions">
@@ -15,13 +15,21 @@
         :isRadio="!question.select"
       />
 
+      <p v-if="errorMessage" class="text-red-500 text-2xl mt-2">{{ errorMessage }}</p>
+
       <button
         type="submit"
-        class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-blue-500 transition-all duration-150 ease-in font-bold"
+        class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-blue-500 transition-all duration-150 ease-in font-bold mr-96"
       >
         Submit
       </button>
+      <button
+        class="inline-flex w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+      >
+        <router-link to="/bpm">Back</router-link>
+      </button>
     </form>
+
   </div>
 </template>
 
@@ -34,13 +42,12 @@ import { QUESTIONS } from "../constants/index.js";
 const bpm = ref(null);
 const answers = ref({
   mood: null,
-  vocalsPreference: null,
   energyLevel: null,
   instrumentDominance: null,
   ambiance: null,
-  tempoPreference: null,
   complexity: null,
 });
+const errorMessage = ref('');
 
 const fetchBpmFromSession = async () => {
   try {
@@ -62,6 +69,14 @@ function getCookie(name) {
 }
 
 const submitQuestions = async () => {
+  // Check if all answers are filled
+  for (const key in answers.value) {
+    if (answers.value[key] === null) {
+      errorMessage.value = "Please answer all questions before submitting.";
+      return;
+    }
+  }
+
   const csrftoken = getCookie('csrftoken');
 
   const formData = {
