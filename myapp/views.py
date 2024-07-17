@@ -1,11 +1,12 @@
 import uuid
-import logging, json
+import logging
+import json
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import SongRequestFeatures
 from .src.ecg import calculate_bpm
 from .src.knn import find_closest_song
-
+from .src.calculate_values import calculate_values
 
 logger = logging.getLogger(__name__)
 
@@ -62,32 +63,19 @@ def submit_questions(request):
             del request.session['closest_song']
 
         # Log received data
-        print(f"Received POST data: {request.POST}")
+        print(f"Received POST data: {json.loads(request.body)}")
 
         data = json.loads(request.body)
         bpm = request.session.get('bpm')  # Retrieve BPM from session
 
         if bpm:
-            request.session['acousticness'] = float(data.get('acousticness', 0.0))
-            request.session['danceability'] = float(data.get('danceability', 0.0))
-            request.session['energy'] = float(data.get('energy', 0.0))
-            request.session['instrumentalness'] = float(data.get('instrumentalness', 0.0))
-            request.session['liveness'] = float(data.get('liveness', 0.0))
-            request.session['loudness'] = float(data.get('loudness', 0.0))
-            request.session['speechiness'] = float(data.get('speechiness', 0.0))
-            request.session['mode'] = int(data.get('mode', 0))
-            request.session['valence'] = float(data.get('valence', 0.0))
+            calculated_values = calculate_values(data)
+
+            request.session.update(calculated_values)
 
             print(bpm)
-            print(request.session['acousticness'])
-            print(request.session['danceability'])
-            print(request.session['energy'])
-            print(request.session['instrumentalness'])
-            print(request.session['liveness'])
-            print(request.session['loudness'])
-            print(request.session['speechiness'])
-            print(request.session['mode'])
-            print(request.session['valence'])
+            for key, value in calculated_values.items():
+                print(f"{key}: {value}")
 
             # Update SongRequestFeatures entry with additional data
             unique_id = request.session.get('id')
