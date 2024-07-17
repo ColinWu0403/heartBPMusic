@@ -4,12 +4,18 @@
     <label :for="id" class="text-xl font-bold text-white">{{ question.title }}</label>
     <div v-if="isRadio">
       <div v-for="option in question.options" :key="option.value">
-        <input :type="type" :id="option.value" :value="option.value" v-model="modelValue" />
+        <input
+          :type="type"
+          :id="option.value"
+          :value="option.value"
+          :checked="internalModelValue === option.value"
+          @change="updateValue(option.value)"
+        />
         <label :for="option.value" class="text-md text-white">{{ option.label }}</label>
       </div>
     </div>
-    <div v-else>cl
-      <select v-model="modelValue" :id="id" class="ml-2">
+    <div v-else>
+      <select v-model="internalModelValue" :id="id" class="ml-2">
         <option v-for="option in question.options" :key="option.value" :value="option.value" class="text-md text-white">
           {{ option.label }}
         </option>
@@ -50,4 +56,8 @@ const internalModelValue = ref(props.modelValue);
 watch(internalModelValue, (newValue) => {
   emit("update:modelValue", newValue);
 });
+
+const updateValue = (value) => {
+  internalModelValue.value = value;
+};
 </script>
