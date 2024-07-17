@@ -106,28 +106,29 @@ def plot_pca_clusters(df, pca_features):
     plt.show()
 
 
-# def main():
-#     current_dir = os.path.dirname(os.path.abspath(__file__))
-#
-#     file_path = os.path.join(current_dir, '../data/songs_data.csv')
-#     df = load_data(file_path)
-#
-#     df = map_genres_to_categories(df, genre_mapping)
-#     scaled_features, scaler, neighbors = select_scale_train(df)
-#
-#     user_features = [150, 0.5, 0.8, 0.5, 0.1, 0.2, -7, 0.1, 1, 0.9]  # Example features
-#     similar_songs = find_closest_song(user_features)
-#
-#     columns_to_display = ['name', 'artists', 'bpm', 'genre', 'key', 'acousticness', 'danceability', 'energy',
-#                           'instrumentalness', 'liveness', 'loudness', 'speechiness', 'mode', 'valence']
-#     df_filtered = similar_songs[columns_to_display]
-#
-#     output_file_path = os.path.join(current_dir, '../data/output.md')
-#     save_markdown_table(df_filtered, output_file_path)
-#
-#     pca_features = apply_pca(scaled_features)
-#     plot_pca_clusters(df, pca_features)
-#
-#
-# if __name__ == "__main__":
-#     main()
+def main():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    file_path = os.path.join(current_dir, '../data/songs_data.csv')
+    df = load_data(file_path)
+
+    df = map_genres_to_categories(df, genre_mapping)
+    scaled_features, scaler, neighbors = select_scale_train(df)
+
+    user_features = [140, 0.5, 0.8, 0.5, 0.1, 0.2, -7, 0.1, 1, 0.9]  # Example features
+    similar_songs, similar_song_dict = find_closest_song(user_features)
+    print(similar_song_dict)
+
+    columns_to_display = ['name', 'artists', 'bpm', 'genre', 'key', 'acousticness', 'danceability', 'energy',
+                          'instrumentalness', 'liveness', 'loudness', 'speechiness', 'mode', 'valence']
+    df_filtered = similar_songs[columns_to_display]
+
+    output_file_path = os.path.join(current_dir, '../data/output.md')
+    save_markdown_table(df_filtered, output_file_path)
+
+    # pca_features = apply_pca(scaled_features)
+    # plot_pca_clusters(df, pca_features)
+
+
+if __name__ == "__main__":
+    main()

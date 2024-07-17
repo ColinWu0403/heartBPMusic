@@ -7,5 +7,6 @@ urlpatterns = [
     path('api/get-bpm/', views.get_bpm, name='get_bpm'),
     path('api/get-bpm-from-session/', views.get_bpm_from_session, name='get_bpm_from_session'),
     path('api/submit-questions/', views.submit_questions, name='submit_questions'),
+    path('api/get-closest-song/', views.get_closest_song, name='get_closest_song'),
     re_path(r'^.*/$', TemplateView.as_view(template_name='index.html')),
 ]
