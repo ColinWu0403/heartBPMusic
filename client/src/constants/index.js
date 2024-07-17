@@ -8,14 +8,7 @@ export const QUESTIONS = {
       { label: "Calm", value: "calm" },
       { label: "Excited", value: "excited" },
       { label: "Reflective", value: "reflective" },
-    ],
-  },
-  vocalsPreference: {
-    title: "Do you prefer music with vocals or instrumental only?",
-    options: [
-      { label: "Vocals preferred", value: "vocals" },
-      { label: "Instrumental preferred", value: "instrumental" },
-      { label: "No preference", value: "noPreference" },
+      { label: "Creative", value: "creative" },
     ],
   },
   energyLevel: {
@@ -31,9 +24,9 @@ export const QUESTIONS = {
   instrumentDominance: {
     title: "How prominent do you want the instrumental parts to be?",
     options: [
-      { label: "Strongly instrumental-focused", value: "strongInstrumental" },
+      { label: "Strongly instrumental-focused", value: "instrumental" },
       { label: "Balanced vocals and instruments", value: "balanced" },
-      { label: "Strongly vocal-focused", value: "strongVocals" },
+      { label: "Strongly vocal-focused", value: "vocals" },
     ],
   },
   ambiance: {
@@ -44,20 +37,11 @@ export const QUESTIONS = {
       { label: "Dynamic and varied", value: "dynamic" },
     ],
   },
-  tempoPreference: {
-    title: "Would you prefer music with a specific tempo?",
-    options: [
-      { label: "Fast tempo", value: "fast" },
-      { label: "Medium tempo", value: "medium" },
-      { label: "Slow tempo", value: "slow" },
-    ],
-  },
   complexity: {
     title: "How complex do you want the musical arrangement to be?",
     options: [
       { label: "Intricate and detailed", value: "intricate" },
       { label: "Simple and straightforward", value: "simple" },
-      { label: "No preference", value: "noPreference" },
     ],
   },
 };
