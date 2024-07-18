@@ -63,6 +63,9 @@ jobs:
           cp -a dist/. deploy/
           cp public/CNAME deploy/  # Ensure CNAME is copied if needed
 
+          # Move back to client directory
+          cd ..
+
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -76,6 +79,12 @@ jobs:
           # Configure git user
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # Add all files
+          git add .
+          
+          # Commit changes
+          git commit -m "Deploy to GitHub Pages"
           
           # Add remote origin
           git remote add origin https://github.com/${{ github.repository }}.git
@@ -94,12 +103,6 @@ jobs:
 
           # Copy new build files
           cp -a ../dist/. .
-          
-          # Add all files
-          git add .
-          
-          # Commit changes
-          git commit -m "Deploy to GitHub Pages"
           
           # Force push to gh-pages branch
           git push --force "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages
