@@ -48,21 +48,27 @@ jobs:
           mkdir -p dist
           npm run build
 
+      - name: Prepare deployment directory
+        run: |
+          # Navigate to the build output directory
+          cd client
+
+          # Remove existing deployment directory if it exists
+          rm -rf deploy
+
+          # Create deployment directory
+          mkdir deploy
+
+          # Copy necessary build files to deployment directory
+          cp -a dist/. deploy/
+          cp public/CNAME deploy/  # Ensure CNAME is copied if needed
+
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Navigate to the build output directory
-          cd client
-
-          # Create a temporary directory to stage files
-          mkdir deploy
-          
-          # Copy only the necessary build files
-          cp -a dist/. deploy/
-          cp public/CNAME deploy/  # Ensure CNAME is copied if needed
-
-          cd deploy
+          cd client/deploy
           
           # Initialize Git if not already initialized
           git init
