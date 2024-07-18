@@ -26,6 +26,13 @@
       Next
     </router-link>
   </div>
+    <router-link to="/">
+    <button
+      class="absolute bottom-0 left-0 ml-8 mt-4 mb-6 w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] items-center justify-center hover:bg-red-400 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+    >
+      Back
+    </button>
+  </router-link>
 </template>
 
 <script setup>

@@ -21,7 +21,7 @@
 
       <button
         type="submit"
-        class="inline-flex w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-red-400 hover:text-white transition-all duration-150 ease-in font-bold mr-96"
+        class="text-white inline-flex w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-red-400 hover:text-black transition-all duration-150 ease-in font-bold mr-96"
       >
         Submit
       </button>
