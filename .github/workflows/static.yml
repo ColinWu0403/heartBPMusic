@@ -72,6 +72,13 @@ jobs:
           else
             git checkout --orphan gh-pages
           fi
+
+          # Remove all existing files (except .git directory)
+          find . ! -name '.git' -type f -exec rm -f {} +
+          find . ! -name '.git' -type d -exec rm -rf {} +
+          
+          # Copy new build files
+          cp -a ../dist/. .
           
           # Add all files
           git add .
