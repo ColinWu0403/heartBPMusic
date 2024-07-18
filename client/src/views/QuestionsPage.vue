@@ -1,4 +1,11 @@
 <template>
+  <router-link to="/bpm">
+    <button
+      class="relative top-0 ml-8 mt-6 w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+    >
+      Back
+    </button>
+  </router-link>
   <div class="flex flex-col items-center justify-center h-full py-4">
     <h1 class="text-white text-4xl font-bold mb-4">Music Preferences</h1>
     <p class="text-white text-2xl text-center mb-4">BPM Value: {{ bpm }}</p>
@@ -23,13 +30,7 @@
       >
         Submit
       </button>
-      <button
-        class="inline-flex w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
-      >
-        <router-link to="/bpm">Back</router-link>
-      </button>
     </form>
-
   </div>
 </template>
 

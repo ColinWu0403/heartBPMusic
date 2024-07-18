@@ -2,7 +2,7 @@
   <div class="song-detail-card p-8 bg-white rounded shadow-md flex flex-row">
     <div class="min-w-[500px] mr-8">
       <h2 class="text-3xl font-bold">{{ song.name }}</h2>
-      <p class="text-lg">{{ song.artists }}</p>
+      <p class="text-lg font-medium">{{ song.artists }}</p>
       <p class="text-md"><span class="font-bold">BPM:</span> {{ song.bpm }}</p>
       <p class="text-md"><span class="font-bold">Genres:</span> {{ song.genre }}</p>
       <p class="text-md"><span class="font-bold">Key:</span> {{ getKey(song.key) }}</p>
@@ -18,17 +18,19 @@
         <p class="text-md"><span class="font-bold">Mode:</span> {{ song.mode }}</p>
         <p class="text-md"><span class="font-bold">Valence:</span> {{ song.valence }}</p>
       </div>
-      <button
-        class="inline-flex w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
-      >
-        <router-link to="/questions">Back</router-link>
-      </button>
+      <router-link to="/questions">
+        <button
+          class="inline-flex w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+        >
+          Back
+        </button>
+      </router-link>
     </div>
     <div class="min-w-[460px] flex justify-center items-center w-40 h-90">
       <iframe
         :src="getAlbumCoverUrl(song.uri)"
-        width="460"
-        height="420"
+        width="480"
+        height="440"
         allowtransparency="true"
       ></iframe>
     </div>
