@@ -82,10 +82,10 @@ jobs:
             git checkout --orphan gh-pages
           fi
 
-          # Remove all existing files (except .git directory)
-          find . ! -name '.git' -type f -exec rm -f {} +
-          find . ! -name '.git' -type d -exec rm -rf {} +
-          
+          # Remove all existing files (excluding .git and .gitignore)
+          shopt -s extglob
+          rm -rf !(.*)
+
           # Copy new build files
           cp -a ../dist/. .
           
