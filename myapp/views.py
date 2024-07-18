@@ -1,6 +1,8 @@
+import os
 import uuid
 import logging
 import json
+import random
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import SongRequestFeatures
@@ -17,9 +19,20 @@ def index(request):
 
 def get_bpm(request):
     if request.method == 'GET':
-        ecg_file_path = "signals/04048"  # Replace with actual path to your ECG file
-        # bpm, rounded_bpm = calculate_bpm(ecg_file_path)
-        rounded_bpm = 128
+        csv_files = [f for f in os.listdir('signals/csv') if f.endswith('.csv')]
+
+        if not csv_files:
+            return JsonResponse({'error': 'No ECG files found'}, status=404)
+
+        # Randomly select one CSV file
+        selected_file = random.choice(csv_files)
+        ecg_file_path = os.path.join('signals/csv', selected_file)
+
+        # get average bpm of signal
+        bpm, rounded_bpm = calculate_bpm(ecg_file_path)
+        # rounded_bpm = 150
+
+        rounded_bpm = round(rounded_bpm * 2.15, 4)
 
         # Store the BPM value in session for future use
         unique_id = str(uuid.uuid4())
