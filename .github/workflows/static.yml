@@ -53,8 +53,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Navigate to the build output directory
-          cd client/dist
+          cd client
 
+          # Create a temporary directory to stage files
+          mkdir deploy
+          
+          # Copy only the necessary build files
+          cp -a dist/. deploy/
+          cp public/CNAME deploy/  # Ensure CNAME is copied if needed
+
+          cd deploy
+          
           # Initialize Git if not already initialized
           git init
           
@@ -72,6 +81,13 @@ jobs:
           else
             git checkout --orphan gh-pages
           fi
+
+          # Remove all existing files (excluding .git and .gitignore)
+          shopt -s extglob
+          rm -rf !(.*)
+
+          # Copy new build files
+          cp -a ../dist/. .
           
           # Add all files
           git add .
