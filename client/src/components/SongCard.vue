@@ -20,7 +20,7 @@
       </div>
       <router-link to="/questions">
         <button
-          class="inline-flex w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+          class="inline-flex w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-red-400 text-white hover:text-black transition-all duration-150 ease-in font-bold"
         >
           Back
         </button>

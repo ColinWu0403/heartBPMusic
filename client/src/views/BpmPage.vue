@@ -4,12 +4,12 @@
     <h1 class="text-white text-3xl font-bold mb-4">BPM</h1>
     <button
       @click="fetchBpm"
-      class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-blue-500 transition-all duration-150 ease-in font-bold"
+      class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-red-600 hover:text-white transition-all duration-150 ease-in font-bold"
       :disabled="isLoading"
     >
       <div v-if="isLoading" class="flex items-center">
         <div
-          class="w-5 h-5 border-4 border-t-4 border-t-blue-500 border-[#d6d6d6] rounded-full animate-spin"
+          class="w-5 h-5 border-4 border-t-4 border-t-red-600 border-[#d6d6d6] rounded-full animate-spin"
         ></div>
         <span class="ml-2">Loading...</span>
       </div>
@@ -21,7 +21,7 @@
     <router-link
       v-if="bpm !== null"
       :to="'/questions'"
-      class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-blue-500 transition-all duration-150 ease-in font-bold"
+      class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-red-600 transition-all duration-150 ease-in font-bold"
     >
       Next
     </router-link>

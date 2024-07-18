@@ -1,7 +1,7 @@
 <!-- components/Question.vue -->
 <template>
   <div class="mb-4 flex flex-col">
-    <label :for="id" class="text-2xl font-bold text-cyan-200">{{ question.title }}</label>
+    <label :for="id" class="text-2xl font-bold text-red-500">{{ question.title }}</label>
     <div class="mt-2">
       <div v-for="option in question.options" :key="option.value" class="mb-1 flex items-center space-x-2">
         <input
@@ -12,7 +12,7 @@
           @change="updateValue(option.value)"
           class="h-4 w-4"
         />
-        <label :for="option.value" class="text-md text-white">{{ option.label }}</label>
+        <label :for="option.value" class="text-md font-medium text-gray-950">{{ option.label }}</label>
       </div>
     </div>
   </div>

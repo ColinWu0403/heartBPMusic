@@ -1,17 +1,10 @@
 <template>
-  <router-link to="/bpm">
-    <button
-      class="relative top-0 ml-8 mt-6 w-36 h-8 bg-blue-500 overflow-hidden rounded-lg p-[1px] items-center justify-center hover:bg-blue-300 text-white hover:text-black transition-all duration-150 ease-in font-bold"
-    >
-      Back
-    </button>
-  </router-link>
   <div class="flex flex-col items-center justify-center h-full py-4">
     <h1 class="text-white text-4xl font-bold mb-4">Music Preferences</h1>
     <p class="text-white text-2xl text-center mb-4">BPM Value: {{ bpm }}</p>
 
     <!-- Submission Form -->
-    <form @submit.prevent="submitQuestions">
+    <form @submit.prevent="submitQuestions" class="bg-white py-8 px-12 max-w-full rounded">
       <QuestionCard
         v-for="(question, key) in QUESTIONS"
         :key="key"
@@ -22,18 +15,26 @@
         :isRadio="!question.select"
       />
 
-      <p v-if="errorMessage" class="text-red-500 text-2xl mt-2">{{ errorMessage }}</p>
+      <p v-if="errorMessage" class="text-red-500 text-2xl mt-2">
+        {{ errorMessage }}
+      </p>
 
       <button
         type="submit"
-        class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-blue-500 transition-all duration-150 ease-in font-bold mr-96"
+        class="inline-flex w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-red-400 hover:text-white transition-all duration-150 ease-in font-bold mr-96"
       >
         Submit
       </button>
     </form>
   </div>
+  <router-link to="/bpm">
+    <button
+      class="relative bottom-0 left-0 ml-8 mt-4 mb-6 w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] items-center justify-center hover:bg-red-400 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+    >
+      Back
+    </button>
+  </router-link>
 </template>
-
 
 <script setup>
 import { ref, onMounted } from "vue";
@@ -48,7 +49,7 @@ const answers = ref({
   ambiance: null,
   complexity: null,
 });
-const errorMessage = ref('');
+const errorMessage = ref("");
 
 const fetchBpmFromSession = async () => {
   try {
@@ -65,8 +66,10 @@ onMounted(() => {
 });
 
 function getCookie(name) {
-  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-  return cookieValue ? cookieValue.pop() : '';
+  const cookieValue = document.cookie.match(
+    "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
+  );
+  return cookieValue ? cookieValue.pop() : "";
 }
 
 const submitQuestions = async () => {
@@ -78,7 +81,7 @@ const submitQuestions = async () => {
     }
   }
 
-  const csrftoken = getCookie('csrftoken');
+  const csrftoken = getCookie("csrftoken");
 
   const formData = {
     bpm: bpm.value,
@@ -98,7 +101,7 @@ const submitQuestions = async () => {
     if (response.ok) {
       const result = await response.json();
       console.log("Submitted successfully:", result);
-      window.location.href = '/music';
+      window.location.href = "/music";
     } else {
       console.error("Failed to submit questions:", response.statusText);
     }
