@@ -193,8 +193,8 @@ if __name__ == "__main__":
     load_dotenv(dotenv_path)
 
     # Spotify API credentials
-    CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID3')
-    CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET3')
+    CLIENT_ID = os.getenv('SPOTIPY_CLIENT_ID')
+    CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET')
 
     # Authenticate with Spotify
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET))
