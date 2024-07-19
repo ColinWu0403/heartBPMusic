@@ -1,3 +1,0 @@
-|      | name                | artists                |    bpm | genre        |   key |   acousticness |   danceability |   energy |   instrumentalness |   liveness |   loudness |   speechiness |   mode |   valence |
-|-----:|:--------------------|:-----------------------|-------:|:-------------|------:|---------------:|---------------:|---------:|-------------------:|-----------:|-----------:|--------------:|-------:|----------:|
-| 2800 | POKER FACE (TECHNO) | BASSTON; STRØBE; Tazzy | 149.91 | techno remix |    11 |          0.343 |          0.703 |    0.685 |              0.137 |      0.211 |     -8.387 |         0.114 |      1 |     0.747 |
