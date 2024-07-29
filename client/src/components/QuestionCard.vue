@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4 flex flex-col">
-    <label :for="id" class="text-3xl font-bold text-red-600 text-center">
+    <label :for="id" class="text-3xl font-bold text-red-600 text-center mb-2">
       {{ question.title }}
     </label>
     <div class="mt-4 grid grid-cols-2 gap-4">

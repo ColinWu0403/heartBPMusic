@@ -4,23 +4,46 @@
       <h2 class="text-3xl font-bold">{{ song.name }}</h2>
       <p class="text-lg font-medium">{{ song.artists }}</p>
       <p class="text-md"><span class="font-bold">BPM:</span> {{ song.bpm }}</p>
-      <p class="text-md"><span class="font-bold">Genres:</span> {{ song.genre }}</p>
-      <p class="text-md"><span class="font-bold">Key:</span> {{ getKey(song.key) }}</p>
+      <p class="text-md">
+        <span class="font-bold">Genres:</span> {{ song.genre }}
+      </p>
+      <p class="text-md">
+        <span class="font-bold">Key:</span> {{ getKey(song.key) }}
+      </p>
       <div class="stats mt-4">
         <h3 class="text-2xl font-semibold">Stats:</h3>
-        <p class="text-md"><span class="font-bold">Acousticness:</span> {{ song.acousticness }}</p>
-        <p class="text-md"><span class="font-bold">Danceability:</span> {{ song.danceability }}</p>
-        <p class="text-md"><span class="font-bold">Energy:</span> {{ song.energy }}</p>
-        <p class="text-md"><span class="font-bold">Instrumentalness:</span> {{ song.instrumentalness }}</p>
-        <p class="text-md"><span class="font-bold">Liveness:</span> {{ song.liveness }}</p>
-        <p class="text-md"><span class="font-bold">Loudness:</span> {{ song.loudness }}</p>
-        <p class="text-md"><span class="font-bold">Speechiness:</span> {{ song.speechiness }}</p>
-        <p class="text-md"><span class="font-bold">Mode:</span> {{ song.mode }}</p>
-        <p class="text-md"><span class="font-bold">Valence:</span> {{ song.valence }}</p>
+        <p class="text-md">
+          <span class="font-bold">Acousticness:</span> {{ song.acousticness }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Danceability:</span> {{ song.danceability }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Energy:</span> {{ song.energy }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Instrumentalness:</span>
+          {{ song.instrumentalness }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Liveness:</span> {{ song.liveness }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Loudness:</span> {{ song.loudness }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Speechiness:</span> {{ song.speechiness }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Mode:</span> {{ song.mode }}
+        </p>
+        <p class="text-md">
+          <span class="font-bold">Valence:</span> {{ song.valence }}
+        </p>
       </div>
       <router-link to="/questions">
         <button
-          class="inline-flex w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-red-400 text-white hover:text-black transition-all duration-150 ease-in font-bold"
+          class="inline-flex w-36 h-10 bg-red-600 overflow-hidden rounded-lg p-[1px] items-center justify-center mt-4 hover:bg-red-400 text-white hover:text-black transition-all duration-150 ease-in font-bold"
         >
           Back
         </button>
@@ -39,6 +62,7 @@
 
 <script setup>
 import { defineProps } from "vue";
+import { buttonStyles } from "../constants/styles";
 
 const props = defineProps({
   song: {
@@ -48,7 +72,18 @@ const props = defineProps({
 });
 
 const keyMapping = [
-  'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'
+  "C",
+  "C#",
+  "D",
+  "D#",
+  "E",
+  "F",
+  "F#",
+  "G",
+  "G#",
+  "A",
+  "A#",
+  "B",
 ];
 
 const getKey = (key) => {
@@ -56,12 +91,12 @@ const getKey = (key) => {
 };
 
 const getAlbumCoverUrl = (uri) => {
-  if (typeof uri === 'string') {
-    const spotifyId = uri.split(':').pop();
+  if (typeof uri === "string") {
+    const spotifyId = uri.split(":").pop();
     return `https://open.spotify.com/embed/track/${spotifyId}`;
   } else {
-    console.error('Invalid song URI:', uri);
-    return ''; // or handle appropriately for your use case
+    console.error("Invalid song URI:", uri);
+    return ""; // or handle appropriately for your use case
   }
 };
 </script>

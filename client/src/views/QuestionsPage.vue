@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col items-center justify-center h-full py-4">
-    <h1 class="text-white text-4xl font-bold mb-4">Music Preferences</h1>
-    <p class="text-white text-2xl text-center mb-4">BPM Value: {{ bpm }}</p>
+    <h1 class="text-white text-5xl font-bold mt-8 mb-4">Music Preferences</h1>
+    <p class="text-white font-medium text-2xl text-center mb-8">
+      BPM Value: {{ bpm }}
+    </p>
 
     <div class="bg-white py-8 px-12 max-w-full rounded">
       <!-- Submission Form -->
@@ -32,7 +34,7 @@
                 'bg-red-600': index === currentQuestion,
                 'bg-gray-300': index !== currentQuestion,
               }"
-              class="w-3 h-3 rounded-full justify-center"
+              class="w-3 h-3 rounded-full justify-center align-center mb-4"
             ></span>
           </div>
 
@@ -88,7 +90,7 @@
                 'bg-red-600': index === currentQuestion,
                 'bg-gray-300': index !== currentQuestion,
               }"
-              class="w-3 h-3 rounded-full justify-center items-center"
+              class="w-3 h-3 rounded-full justify-center align-center mb-4"
             ></span>
           </div>
 
