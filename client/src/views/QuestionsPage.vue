@@ -12,6 +12,7 @@
           :id="questionKeys[currentQuestion]"
           :type="QUESTIONS[questionKeys[currentQuestion]].type || 'radio'"
           :isRadio="!QUESTIONS[questionKeys[currentQuestion]].select"
+          :selectedOptions="selectedOptions"
           class="mb-8"
         />
 
@@ -42,7 +43,14 @@
           >
             Next
           </button>
-          <button v-else type="submit" :class="buttonStyles">Submit</button>
+          <button
+            v-else
+            type="submit"
+            @click="submitQuestions"
+            :class="buttonStyles"
+          >
+            Submit
+          </button>
         </div>
 
         <p
@@ -60,6 +68,7 @@
           :id="questionKeys[currentQuestion]"
           :type="QUESTIONS[questionKeys[currentQuestion]].type || 'radio'"
           :isRadio="!QUESTIONS[questionKeys[currentQuestion]].select"
+          :selectedOptions="selectedOptions"
           class="mb-8"
         />
 
@@ -107,7 +116,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import QuestionCard from "../components/QuestionCard.vue";
 import { QUESTIONS } from "../constants/index.js";
 import { buttonStyles } from "../constants/styles.js";
@@ -118,10 +127,17 @@ const questionKeys = Object.keys(QUESTIONS);
 const answers = ref(
   questionKeys.reduce((acc, key) => ({ ...acc, [key]: null }), {})
 );
+
+const selectedOptions = ref({}); // Track selected options for highlighting
 const errorMessage = ref("");
 
 // Computed property to get current question key
 const currentQuestionKey = computed(() => questionKeys[currentQuestion.value]);
+
+// Check if current question is the last question
+const isLastQuestion = computed(
+  () => currentQuestion.value === questionKeys.length - 1
+);
 
 // Fetch BPM value
 const fetchBpmFromSession = async () => {
@@ -157,6 +173,17 @@ const prevQuestion = () => {
     errorMessage.value = "";
   }
 };
+
+// Update selected options to maintain highlighting
+const updateSelectedOptions = () => {
+  const key = questionKeys[currentQuestion.value];
+  if (answers.value[key] !== null) {
+    selectedOptions.value[key] = answers.value[key];
+  }
+};
+
+// Watch for changes in current question and update selected options
+watch(currentQuestion, updateSelectedOptions);
 
 function getCookie(name) {
   const cookieValue = document.cookie.match(

@@ -1,8 +1,8 @@
 <template>
   <div class="mb-4 flex flex-col">
-    <label :for="id" class="text-3xl font-bold text-red-600 text-center">{{
-      question.title
-    }}</label>
+    <label :for="id" class="text-3xl font-bold text-red-600 text-center">
+      {{ question.title }}
+    </label>
     <div class="mt-4 grid grid-cols-2 gap-4">
       <div
         v-for="option in question.options"
@@ -10,7 +10,7 @@
         class="flex items-center justify-center p-4 border border-gray-300 rounded-md cursor-pointer hover:bg-red-600 text-gray-950 hover:text-white transition-all duration-150 ease-in"
         @click="updateValue(option.value)"
         :class="{
-          'bg-red-600 text-white': internalModelValue === option.value,
+          'bg-red-600 text-white': isSelected(option.value),
         }"
       >
         <input
@@ -21,9 +21,9 @@
           @change="updateValue(option.value)"
           class="hidden"
         />
-        <label :for="option.value" class="text-lg font-medium cursor-pointer">{{
-          option.label
-        }}</label>
+        <label :for="option.value" class="text-lg font-medium cursor-pointer">
+          {{ option.label }}
+        </label>
       </div>
     </div>
   </div>
@@ -53,22 +53,33 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  selectedOptions: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 const emit = defineEmits(["update:modelValue"]);
 const internalModelValue = ref(props.modelValue);
 
-watch(internalModelValue, (newValue) => {
-  emit("update:modelValue", newValue);
-});
-
+// Update internalModelValue and emit change
 const updateValue = (value) => {
   internalModelValue.value = value;
+  emit("update:modelValue", value);
 };
-</script>
 
-<style scoped>
-.bg-gray-300 {
-  background-color: #e2e8f0; /* Tailwind CSS gray-300 */
-}
-</style>
+// Check if the option is selected
+const isSelected = (value) => {
+  return internalModelValue.value === value;
+};
+
+// Watch for changes in the selected options
+watch(
+  () => props.selectedOptions[props.id],
+  (newValue) => {
+    if (newValue !== internalModelValue.value) {
+      internalModelValue.value = newValue;
+    }
+  }
+);
+</script>
