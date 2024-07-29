@@ -5,7 +5,7 @@
     <button
       @click="fetchBpm"
       class="inline-flex w-36 h-8 bg-white overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-red-600 hover:text-white transition-all duration-150 ease-in font-bold"
-      :disabled="isLoading"
+      :disabled="isLoading || hasFetchedBpm"
     >
       <div v-if="isLoading" class="flex items-center">
         <div
@@ -26,7 +26,7 @@
       Next
     </router-link>
   </div>
-    <router-link to="/">
+  <router-link to="/">
     <button
       class="absolute bottom-0 left-0 ml-8 mt-4 mb-6 w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] items-center justify-center hover:bg-red-400 text-white hover:text-black transition-all duration-150 ease-in font-bold"
     >
@@ -40,17 +40,21 @@ import { ref } from "vue";
 
 const bpm = ref(null);
 const isLoading = ref(false);
+const hasFetchedBpm = ref(false);
 
 const fetchBpm = async () => {
+  if (hasFetchedBpm.value) return;
+
   try {
     isLoading.value = true;
 
-    const response = await fetch("/api/get-bpm"); // Adjust URL as per your Django server setup
+    const response = await fetch("/api/get-bpm");
     if (!response.ok) {
       throw new Error("Failed to fetch BPM");
     }
     const data = await response.json();
     bpm.value = data.bpm; // Update bpm.value with the fetched BPM
+    hasFetchedBpm.value = true;
   } catch (error) {
     console.error("Error fetching BPM:", error);
   } finally {
