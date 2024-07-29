@@ -3,6 +3,7 @@ import HomePage from "../views/HomePage.vue";
 import BpmPage from "../views/BpmPage.vue";
 import QuestionsPage from "../views/QuestionsPage.vue";
 import MusicPage from "../views/MusicPage.vue";
+import ErrorPage from "../views/ErrorPage.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/music",
     name: "Music",
     component: MusicPage,
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "Error",
+    component: ErrorPage,
   },
 ];
 
