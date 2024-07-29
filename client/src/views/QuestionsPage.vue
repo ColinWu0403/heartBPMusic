@@ -3,54 +3,127 @@
     <h1 class="text-white text-4xl font-bold mb-4">Music Preferences</h1>
     <p class="text-white text-2xl text-center mb-4">BPM Value: {{ bpm }}</p>
 
-    <!-- Submission Form -->
-    <form @submit.prevent="submitQuestions" class="bg-white py-8 px-12 max-w-full rounded">
-      <QuestionCard
-        v-for="(question, key) in QUESTIONS"
-        :key="key"
-        :question="question"
-        v-model="answers[key]"
-        :id="key"
-        :type="question.type || 'radio'"
-        :isRadio="!question.select"
-      />
+    <div class="bg-white py-8 px-12 max-w-full rounded">
+      <!-- Submission Form -->
+      <form v-if="isLastQuestion" @submit.prevent="submitQuestions">
+        <QuestionCard
+          :question="QUESTIONS[questionKeys[currentQuestion]]"
+          v-model="answers[questionKeys[currentQuestion]]"
+          :id="questionKeys[currentQuestion]"
+          :type="QUESTIONS[questionKeys[currentQuestion]].type || 'radio'"
+          :isRadio="!QUESTIONS[questionKeys[currentQuestion]].select"
+          class="mb-8"
+        />
 
-      <p v-if="errorMessage" class="text-red-500 text-2xl mt-2">
-        {{ errorMessage }}
-      </p>
+        <div class="flex justify-between items-center mt-4 w-full">
+          <router-link v-if="currentQuestion === 0" to="/bpm">
+            <button :class="buttonStyles">Back</button>
+          </router-link>
+          <button v-else @click="prevQuestion" :class="buttonStyles">
+            Previous
+          </button>
 
-      <button
-        type="submit"
-        class="text-white inline-flex w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] mb-4 items-center justify-center mt-4 hover:bg-red-400 hover:text-black transition-all duration-150 ease-in font-bold mr-96"
-      >
-        Submit
-      </button>
-    </form>
+          <div class="flex space-x-2">
+            <span
+              v-for="(key, index) in questionKeys"
+              :key="index"
+              :class="{
+                'bg-red-600': index === currentQuestion,
+                'bg-gray-300': index !== currentQuestion,
+              }"
+              class="w-3 h-3 rounded-full justify-center"
+            ></span>
+          </div>
+
+          <button
+            v-if="currentQuestion < questionKeys.length - 1"
+            @click="nextQuestion"
+            :class="buttonStyles"
+          >
+            Next
+          </button>
+          <button v-else type="submit" :class="buttonStyles">Submit</button>
+        </div>
+
+        <p
+          v-if="isLastQuestion && errorMessage"
+          class="text-red-500 text-2xl mt-2"
+        >
+          {{ errorMessage }}
+        </p>
+      </form>
+
+      <div v-else>
+        <QuestionCard
+          :question="QUESTIONS[questionKeys[currentQuestion]]"
+          v-model="answers[questionKeys[currentQuestion]]"
+          :id="questionKeys[currentQuestion]"
+          :type="QUESTIONS[questionKeys[currentQuestion]].type || 'radio'"
+          :isRadio="!QUESTIONS[questionKeys[currentQuestion]].select"
+          class="mb-8"
+        />
+
+        <div class="flex justify-between items-center mt-4 w-full">
+          <router-link v-if="currentQuestion === 0" to="/bpm">
+            <button :class="buttonStyles">Back</button>
+          </router-link>
+          <button v-else @click="prevQuestion" :class="buttonStyles">
+            Previous
+          </button>
+
+          <div class="flex space-x-2">
+            <span
+              v-for="(key, index) in questionKeys"
+              :key="index"
+              :class="{
+                'bg-red-600': index === currentQuestion,
+                'bg-gray-300': index !== currentQuestion,
+              }"
+              class="w-3 h-3 rounded-full justify-center items-center"
+            ></span>
+          </div>
+
+          <button
+            v-if="currentQuestion < questionKeys.length - 1"
+            @click="nextQuestion"
+            :class="buttonStyles"
+          >
+            Next
+          </button>
+          <button v-else @click="submitQuestions" :class="buttonStyles">
+            Submit
+          </button>
+        </div>
+
+        <p
+          v-if="!isLastQuestion && errorMessage"
+          class="text-red-500 text-2xl mt-2"
+        >
+          {{ errorMessage }}
+        </p>
+      </div>
+    </div>
   </div>
-  <router-link to="/bpm">
-    <button
-      class="relative bottom-0 left-0 ml-8 mt-4 mb-6 w-36 h-8 bg-red-600 overflow-hidden rounded-lg p-[1px] items-center justify-center hover:bg-red-400 text-white hover:text-black transition-all duration-150 ease-in font-bold"
-    >
-      Back
-    </button>
-  </router-link>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import QuestionCard from "../components/QuestionCard.vue";
 import { QUESTIONS } from "../constants/index.js";
+import { buttonStyles } from "../constants/styles.js";
 
 const bpm = ref(null);
-const answers = ref({
-  mood: null,
-  energyLevel: null,
-  instrumentDominance: null,
-  ambiance: null,
-  complexity: null,
-});
+const currentQuestion = ref(0);
+const questionKeys = Object.keys(QUESTIONS);
+const answers = ref(
+  questionKeys.reduce((acc, key) => ({ ...acc, [key]: null }), {})
+);
 const errorMessage = ref("");
 
+// Computed property to get current question key
+const currentQuestionKey = computed(() => questionKeys[currentQuestion.value]);
+
+// Fetch BPM value
 const fetchBpmFromSession = async () => {
   try {
     const response = await fetch("/api/get-bpm-from-session");
@@ -65,6 +138,26 @@ onMounted(() => {
   fetchBpmFromSession();
 });
 
+// Navigate to the next question
+const nextQuestion = () => {
+  if (answers.value[currentQuestionKey.value] !== null) {
+    if (currentQuestion.value < questionKeys.length - 1) {
+      currentQuestion.value++;
+      errorMessage.value = "";
+    }
+  } else {
+    errorMessage.value = "Please answer the question before proceeding.";
+  }
+};
+
+// Navigate to the previous question
+const prevQuestion = () => {
+  if (currentQuestion.value > 0) {
+    currentQuestion.value--;
+    errorMessage.value = "";
+  }
+};
+
 function getCookie(name) {
   const cookieValue = document.cookie.match(
     "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
@@ -72,9 +165,10 @@ function getCookie(name) {
   return cookieValue ? cookieValue.pop() : "";
 }
 
+// Handle form submission
 const submitQuestions = async () => {
   // Check if all answers are filled
-  for (const key in answers.value) {
+  for (const key of questionKeys) {
     if (answers.value[key] === null) {
       errorMessage.value = "Please answer all questions before submitting.";
       return;
