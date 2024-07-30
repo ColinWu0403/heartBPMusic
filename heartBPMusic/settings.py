@@ -56,6 +56,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://heart-bpm-music.vercel.app/",
 ]
 
+CORS_ALLOW_CREDENTIALS=True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
