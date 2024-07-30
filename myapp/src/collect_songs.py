@@ -99,8 +99,8 @@ def append_to_csv(df, csv_path, df_existing):
 
 def main():
     # Paths to CSV files
-    artist_csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
-    songs_csv_path = os.path.join(os.path.dirname(__file__), '../data/songs_data.csv')
+    artist_csv_path = '../static/data/artists_data.csv'
+    songs_csv_path = '../static/data/songs_data.csv'
 
     # Load existing song data and get artists to exclude
     df_existing, artists_to_exclude = load_existing_data(songs_csv_path)

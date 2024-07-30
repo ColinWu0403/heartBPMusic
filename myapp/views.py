@@ -32,7 +32,7 @@ def get_bpm(request):
         bpm, rounded_bpm = calculate_bpm(ecg_file_path)
         # rounded_bpm = 150
 
-        rounded_bpm = round(rounded_bpm * 2.15, 4)
+        rounded_bpm = round(rounded_bpm * random.uniform(1, 1.25), 4)
 
         # Store the BPM value in session for future use
         unique_id = str(uuid.uuid4())

@@ -18,9 +18,9 @@ def remove_duplicates(file_path):
 def main():
     choice = input("1) Remove Song Duplicates\n2) Remove Artist Duplicates?\nEnter Choice: ")
     if choice == "1":
-        csv_path = "../data/songs_data.csv"
+        csv_path = "../static/data/songs_data.csv"
     elif choice == "2":
-        csv_path = "../data/artists_data.csv"
+        csv_path = "../static/data/artists_data.csv"
     else:
         return
     remove_duplicates(csv_path)

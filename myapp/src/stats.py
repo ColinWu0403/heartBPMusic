@@ -397,8 +397,8 @@ def main():
         print("Song Statistics")
 
         # Paths to files
-        songs_csv_path = os.path.join(os.path.dirname(__file__), '../data/songs_data.csv')
-        stats_md_path = os.path.join(os.path.dirname(__file__), '../data/song_stats.md')
+        songs_csv_path = '../static/data/songs_data.csv'
+        stats_md_path = '../static/data/song_stats.md'
 
         # Load song data
         song_df = load_csv(songs_csv_path)
@@ -412,8 +412,8 @@ def main():
         print("Artist Statistics")
 
         # Paths to files
-        artists_csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
-        stats_md_path = os.path.join(os.path.dirname(__file__), '../data/artist_stats.md')
+        artists_csv_path = '../static/data/artists_data.csv'
+        stats_md_path = '../static/data/artist_stats.md'
 
         # Load artist data
         artist_df = load_csv(artists_csv_path)
@@ -428,5 +428,5 @@ def main():
 
 
 if __name__ == "__main__":
-    total_songs = get_total_songs('../data/songs_data.csv')
+    total_songs = get_total_songs('../static/data/songs_data.csv')
     main()

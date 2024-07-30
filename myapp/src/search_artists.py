@@ -87,7 +87,7 @@ def main():
     
     if choice == "1":
         print("Random search...")
-        json_file_path = os.path.join(os.path.dirname(__file__), '../data/spotify_genres.json')
+        json_file_path = '../static/data/spotify_genres.json'
 
         # Load genres from JSON file
         genres = load_genres_from_file(json_file_path)
@@ -101,7 +101,7 @@ def main():
         df_new = pd.DataFrame(artists_data)
 
         # Load existing data from CSV
-        csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
+        csv_path = '../static/data/artists_data.csv'
         df_existing = load_existing_data(csv_path)
 
         # Append new data to existing DataFrame
@@ -169,7 +169,7 @@ def main():
         df_new = pd.DataFrame(artists_data)
 
         # Load existing data from CSV
-        csv_path = os.path.join(os.path.dirname(__file__), '../data/artists_data.csv')
+        csv_path = '../static/data/artists_data.csv'
         df_existing = load_existing_data(csv_path)
 
         # Append new data to existing DataFrame

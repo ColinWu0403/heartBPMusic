@@ -49,8 +49,8 @@ def select_scale_train(df):
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
     # Define paths relative to the current directory
-    scaler_path = os.path.join(current_dir, '../models/scaler.pkl')
-    neighbors_path = os.path.join(current_dir, '../models/neighbors.pkl')
+    scaler_path = '../static/models/scaler.pkl'
+    neighbors_path = '../static/models/neighbors.pkl'
 
     joblib.dump(scaler, scaler_path)
     joblib.dump(neighbors, neighbors_path)
@@ -66,14 +66,15 @@ def find_similar_song(neighbors, scaler, df, user_features):
 
 def find_closest_song(user_features):
     current_dir = os.path.dirname(os.path.abspath(__file__))
-
+    parent_dir = os.path.dirname(current_dir)
+    
     # Define paths relative to the current directory
-    scaler_path = os.path.join(current_dir, '../models/scaler.pkl')
-    neighbors_path = os.path.join(current_dir, '../models/neighbors.pkl')
+    scaler_path = os.path.join(parent_dir + '/static/models/scaler.pkl')
+    neighbors_path = os.path.join(parent_dir + '/static/models/neighbors.pkl')
 
     scaler = joblib.load(scaler_path)
     neighbors = joblib.load(neighbors_path)
-    df = pd.read_csv(os.path.join(current_dir, '../data/songs_data.csv'))
+    df = pd.read_csv(os.path.join(parent_dir + '/static/data/songs_data.csv'))
 
     user_features_scaled = scaler.transform([user_features])
     distances, indices = neighbors.kneighbors(user_features_scaled)
@@ -107,9 +108,8 @@ def plot_pca_clusters(df, pca_features):
 
 
 def main():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
 
-    file_path = os.path.join(current_dir, '../data/songs_data.csv')
+    file_path = '../static/data/songs_data.csv'
     df = load_data(file_path)
 
     df = map_genres_to_categories(df, genre_mapping)
@@ -123,7 +123,7 @@ def main():
                           'instrumentalness', 'liveness', 'loudness', 'speechiness', 'mode', 'valence']
     df_filtered = similar_songs[columns_to_display]
 
-    output_file_path = os.path.join(current_dir, '../data/output.md')
+    output_file_path = '../static/data/output.md'
     save_markdown_table(df_filtered, output_file_path)
 
     # pca_features = apply_pca(scaled_features)
