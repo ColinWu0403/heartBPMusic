@@ -40,8 +40,8 @@ def get_bpm(request):
 
             # Store the BPM value in session for future use
             unique_id = str(uuid.uuid4())
-            request.session['id'] = unique_id
-            request.session['bpm'] = rounded_bpm
+            # request.session['id'] = unique_id
+            # request.session['bpm'] = rounded_bpm
 
             SongRequestFeatures.objects.create(
                 id=unique_id,
@@ -57,6 +57,8 @@ def get_bpm(request):
                 valence=0.0
             )
 
+            logger.info(f"BPM generated: {rounded_bpm}, Session ID: {unique_id}")
+            
             return JsonResponse({'bpm': rounded_bpm, 'id': unique_id}, status=200)
         except Exception as e:
             logger.error(f"Error getting BPM: {e}")
