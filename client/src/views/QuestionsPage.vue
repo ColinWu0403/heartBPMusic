@@ -145,8 +145,16 @@ const isLastQuestion = computed(
 
 // Fetch BPM value
 const fetchBpmFromSession = async () => {
+  const csrftoken = getCookie("csrftoken");
+
   try {
-    const response = await fetch(`${apiBaseUrl}/api/get-bpm-from-session`);
+    const response = await fetch(`${apiBaseUrl}/api/get-bpm-from-session`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+    });
     const data = await response.json();
     bpm.value = data.bpm;
   } catch (error) {
@@ -205,7 +213,6 @@ const submitQuestions = async () => {
       return;
     }
   }
-
   const csrftoken = getCookie("csrftoken");
 
   const formData = {
