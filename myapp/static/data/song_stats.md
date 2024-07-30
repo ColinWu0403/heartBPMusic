@@ -3,18 +3,18 @@
 ## General Stats
 | Statistic | Value |
 | --- | ----- |
-| Total Songs | 11926|
-| Total Artists | 5,237 |
-| Total Genres | 1,323 |
+| Total Songs | 12095|
+| Total Artists | 5,298 |
+| Total Genres | 1,328 |
 
 ### Genre Category Counts
 | Category | Number of Unique Genres |
 | --- | ----- |
-| others | 308 |
+| others | 309 |
 | rock | 269 |
-| edm/electronic | 211 |
+| edm/electronic | 214 |
 | pop (includes country) | 187 |
-| alternative/indie | 170 |
+| alternative/indie | 171 |
 | classical/jazz | 163 |
 | hip hop/r&b | 154 |
 
@@ -23,10 +23,10 @@
 | --- | ----- |
 | rock | 632 |
 | rap | 456 |
-| edm | 443 |
-| pop dance | 418 |
-| electro house | 408 |
-| indie rock | 381 |
+| edm | 453 |
+| pop dance | 419 |
+| electro house | 418 |
+| indie rock | 391 |
 | pop | 374 |
 | alternative metal | 369 |
 | modern rock | 340 |
@@ -34,17 +34,17 @@
 | r&b | 325 |
 | hip hop | 305 |
 | pop rap | 288 |
+| indietronica | 287 |
 | progressive electro house | 279 |
-| indietronica | 277 |
 | trap | 275 |
-| permanent wave | 258 |
+| permanent wave | 268 |
 | singer-songwriter | 257 |
 | mellow gold | 251 |
 | album rock | 250 |
 | soft rock | 250 |
 | urban contemporary | 250 |
+| alternative rock | 240 |
 | nu metal | 230 |
-| alternative rock | 230 |
 | southern hip hop | 229 |
 | soul | 229 |
 | baroque pop | 221 |
@@ -62,17 +62,18 @@
 | post-grunge | 190 |
 | new romantic | 190 |
 | dirty south rap | 188 |
+| europop | 187 |
 | urbano latino | 182 |
 | atl hip hop | 181 |
 | new rave | 180 |
 | pov: indie | 180 |
-| europop | 179 |
+| art pop | 180 |
 | complextro | 178 |
 | big room | 178 |
 | hyperpop | 175 |
-| art pop | 170 |
 | k-pop | 169 |
 | vocal jazz | 169 |
+| brostep | 166 |
 | dance pop | 162 |
 | alternative dance | 160 |
 | neo soul | 160 |
@@ -87,7 +88,6 @@
 | intelligent dance music | 149 |
 | swing | 148 |
 | progressive house | 148 |
-| brostep | 147 |
 | stomp and holler | 144 |
 | ska | 140 |
 | emo | 140 |
@@ -95,17 +95,19 @@
 | adult standards | 138 |
 | crunk | 138 |
 | reggaeton | 136 |
+| glitchcore | 135 |
 | punk | 131 |
+| drum and bass | 131 |
+| synthwave | 131 |
 | dance rock | 130 |
 | mandopop | 130 |
 | rap metal | 129 |
 | neo mellow | 129 |
 | metalcore | 129 |
+| neurofunk | 129 |
 | big band | 127 |
-| glitchcore | 125 |
-| drum and bass | 120 |
 | acoustic pop | 120 |
-| neurofunk | 118 |
+| eurodance | 116 |
 | classical performance | 115 |
 | indie soul | 115 |
 | latin pop | 114 |
@@ -115,12 +117,10 @@
 | synthpop | 110 |
 | contemporary country | 109 |
 | compositional ambient | 109 |
-| synthwave | 109 |
 | screamo | 109 |
-| eurodance | 108 |
+| house | 106 |
 | slap house | 105 |
-| house | 105 |
-| skate punk | 101 |
+| noise pop | 101 |
 
 ### Top Artists
 | Artist | Number of Songs |
@@ -191,6 +191,7 @@
 | Tory Lanez | 14 |
 | Yo-Yo Ma | 14 |
 | 41 | 14 |
+| Showtek | 14 |
 | RÜFÜS DU SOL | 13 |
 | Alan Walker | 13 |
 | Willie Nelson | 13 |
@@ -213,199 +214,198 @@
 | Porter Robinson | 13 |
 | Jenn Carter | 13 |
 | Eric Clapton | 13 |
-| Showtek | 13 |
 | Tems | 12 |
 | Jeremih | 12 |
 | 50 Cent | 12 |
 | Tech N9ne | 12 |
 | Bob Dylan | 12 |
+| Flux Pavilion | 12 |
 | Toby Keith | 12 |
 | Chance the Rapper | 12 |
 | Tinashe | 12 |
 | Childish Gambino | 12 |
 | Imagine Dragons | 12 |
-| Gryffin | 12 |
 
 ### Common Keys
 | Key | Count |
 | --- | ----- |
-| C♯/D♭ | 1345 |
-| C | 1322 |
-| G | 1254 |
-| D | 1179 |
-| A | 1136 |
-| F | 1033 |
-| B | 971 |
-| G♯/A♭ | 838 |
-| A♯/B♭ | 837 |
-| F♯/G♭ | 829 |
-| E | 819 |
-| D♯/E♭ | 363 |
+| C♯/D♭ | 1366 |
+| C | 1344 |
+| G | 1274 |
+| D | 1190 |
+| A | 1147 |
+| F | 1043 |
+| B | 985 |
+| A♯/B♭ | 855 |
+| G♯/A♭ | 853 |
+| F♯/G♭ | 844 |
+| E | 827 |
+| D♯/E♭ | 367 |
 
 ## Song Statistics
 ### Average BPM
-123.49095480462853
+123.6681300537412
 
 ### Average BPM by Genre
 | Genre | Average Value |
 | --- | ----- |
-| edm/electronic | 129.53374187064065 |
-| rock | 126.32364942071453 |
-| pop (includes country) | 123.78214009364221 |
-| alternative/indie | 123.638942993327 |
-| others | 121.6066227908952 |
-| hip hop/r&b | 121.41988872512913 |
-| classical/jazz | 115.40101663479925 |
+| edm/electronic | 130.02349868975801 |
+| rock | 126.35289592322086 |
+| pop (includes country) | 123.80885998038259 |
+| alternative/indie | 123.65637884796986 |
+| others | 121.89143184998628 |
+| hip hop/r&b | 121.44902670971545 |
+| classical/jazz | 115.36696093749998 |
 
 ### Standard Deviation BPM
-29.686479140127823
+29.74396094855637
 
 ### Standard Deviation BPM by Genre
 | Genre | Average Value |
 | --- | ----- |
-| classical/jazz | 33.13098647885493 |
-| hip hop/r&b | 29.67855769967285 |
-| others | 29.676634791384853 |
-| alternative/indie | 29.609883445981062 |
-| rock | 29.33599174217753 |
-| pop (includes country) | 27.69283381864654 |
-| edm/electronic | 25.217767224882564 |
+| classical/jazz | 33.123295132845605 |
+| others | 29.781933966755474 |
+| alternative/indie | 29.665672592950727 |
+| hip hop/r&b | 29.62437953482896 |
+| rock | 29.35502702150283 |
+| pop (includes country) | 27.716904872130904 |
+| edm/electronic | 25.442008890445774 |
 
 ### Average Acousticness
-0.2833998694750964
+0.283043338888797
 
 ### Average Acousticness by Genre
 | Genre | Average Value |
 | --- | ----- |
-| classical/jazz | 0.5743731541644345 |
-| others | 0.34800817571610393 |
-| alternative/indie | 0.27694386095710105 |
-| pop (includes country) | 0.23706793586865527 |
-| hip hop/r&b | 0.203883379342667 |
-| rock | 0.16638439758998985 |
-| edm/electronic | 0.14731342379212511 |
+| classical/jazz | 0.575336279778962 |
+| others | 0.345302292378954 |
+| alternative/indie | 0.2805052975864017 |
+| pop (includes country) | 0.23835331381927508 |
+| hip hop/r&b | 0.20320013823598418 |
+| rock | 0.16755782896451674 |
+| edm/electronic | 0.1482006247134561 |
 
 ### Average Danceability
-0.5827606322320978
+0.582108069450186
 
 ### Average Danceability by Genre
 | Genre | Average Value |
 | --- | ----- |
-| hip hop/r&b | 0.6944026971260158 |
-| edm/electronic | 0.6065301880099293 |
-| pop (includes country) | 0.5970293863972427 |
-| others | 0.5842000706913629 |
-| alternative/indie | 0.5395612202097233 |
-| rock | 0.5147710621738769 |
-| classical/jazz | 0.4979929063097498 |
+| hip hop/r&b | 0.6945876577634306 |
+| edm/electronic | 0.60421699897459 |
+| pop (includes country) | 0.5967034698381587 |
+| others | 0.583939700531767 |
+| alternative/indie | 0.5391196600566573 |
+| rock | 0.5148588007396342 |
+| classical/jazz | 0.4971535251524373 |
 
 ### Average Energy
-0.6370685282575884
+0.6375204603555189
 
 ### Average Energy by Genre
 | Genre | Average Value |
 | --- | ----- |
-| edm/electronic | 0.7450386933900818 |
-| rock | 0.7335733036172288 |
-| pop (includes country) | 0.6696425825529825 |
-| hip hop/r&b | 0.6451745232129654 |
-| alternative/indie | 0.6327050142993327 |
-| others | 0.5989272255054418 |
-| classical/jazz | 0.4193737739961766 |
+| edm/electronic | 0.7454868668109733 |
+| rock | 0.7324437214053011 |
+| pop (includes country) | 0.6687910985777344 |
+| hip hop/r&b | 0.6459498297622497 |
+| alternative/indie | 0.6301572804532586 |
+| others | 0.6008538015673088 |
+| classical/jazz | 0.4183968441310982 |
 
 ### Average Instrumentalness
-0.19146584068002684
+0.19439054467713934
 
 ### Average Instrumentalness by Genre
 | Genre | Average Value |
 | --- | ----- |
-| classical/jazz | 0.35402744351242826 |
-| edm/electronic | 0.3185957638595242 |
-| others | 0.18602648625335796 |
-| alternative/indie | 0.14787801546997126 |
-| rock | 0.11351360485805141 |
-| pop (includes country) | 0.07225125215993095 |
-| hip hop/r&b | 0.0599792219837878 |
+| classical/jazz | 0.3558851999942835 |
+| edm/electronic | 0.31813497714480954 |
+| others | 0.18701716150153955 |
+| alternative/indie | 0.1533888557393766 |
+| rock | 0.11574242221801424 |
+| pop (includes country) | 0.07468279309588027 |
+| hip hop/r&b | 0.05982945744056361 |
 
 ### Average Liveness
-0.18862086198222372
+0.18856850764778835
 
 ### Average Liveness by Genre
 | Genre | Average Value |
 | --- | ----- |
-| edm/electronic | 0.1987351188364648 |
-| rock | 0.1956798620323664 |
-| hip hop/r&b | 0.193842431834931 |
-| others | 0.18974357415523774 |
-| pop (includes country) | 0.18217130359783143 |
-| alternative/indie | 0.1775267492850333 |
-| classical/jazz | 0.16992609942638653 |
+| edm/electronic | 0.19887232539591942 |
+| rock | 0.19543334507352014 |
+| hip hop/r&b | 0.1937482242442042 |
+| others | 0.18974546599496184 |
+| pop (includes country) | 0.1820118440411966 |
+| alternative/indie | 0.17699363550519367 |
+| classical/jazz | 0.16967090320121983 |
 
 ### Average Loudness
--8.426353345631394
+-8.434877387350145
 
 ### Average Loudness by Genre
 | Genre | Average Value |
 | --- | ----- |
-| hip hop/r&b | -7.145236109064073 |
-| pop (includes country) | -7.169161655988174 |
-| edm/electronic | -7.279922194631675 |
-| rock | -7.337963031750178 |
-| alternative/indie | -8.12442402287894 |
-| others | -9.123657146896587 |
-| classical/jazz | -13.757136328871862 |
+| hip hop/r&b | -7.140838861168143 |
+| pop (includes country) | -7.191630088278571 |
+| edm/electronic | -7.268013216360956 |
+| rock | -7.358870476358131 |
+| alternative/indie | -8.178064022662896 |
+| others | -9.091854883851045 |
+| classical/jazz | -13.788369092987772 |
 
 ### Average Speechiness
-0.0873599781988932
+0.08747967755270773
 
 ### Average Speechiness by Genre
 | Genre | Average Value |
 | --- | ----- |
-| hip hop/r&b | 0.15597224760501108 |
-| edm/electronic | 0.08501991249852164 |
-| others | 0.07454432348366993 |
-| pop (includes country) | 0.06999330951207439 |
-| rock | 0.06879579021844862 |
-| classical/jazz | 0.05986367112810717 |
-| alternative/indie | 0.05844135367016219 |
+| hip hop/r&b | 0.1559643968300559 |
+| edm/electronic | 0.08589547681440084 |
+| others | 0.07503760145535929 |
+| pop (includes country) | 0.07000863168219665 |
+| rock | 0.068900352205688 |
+| classical/jazz | 0.05979258765243911 |
+| alternative/indie | 0.0586063078375828 |
 
 ### Average Valence
-0.4786878752305886
+0.4770025299710623
 
 ### Average Valence by Genre
 | Genre | Average Value |
 | --- | ----- |
-| others | 0.5282659267637481 |
-| hip hop/r&b | 0.5278191009579931 |
-| pop (includes country) | 0.5275408452439612 |
-| rock | 0.5215842310073402 |
-| alternative/indie | 0.494176682554815 |
-| classical/jazz | 0.4785842256214147 |
-| edm/electronic | 0.3933469433605293 |
+| hip hop/r&b | 0.5276126504255918 |
+| pop (includes country) | 0.5275237003433046 |
+| others | 0.5258297369157556 |
+| rock | 0.521240591705556 |
+| alternative/indie | 0.4943323323890472 |
+| classical/jazz | 0.47738229801829263 |
+| edm/electronic | 0.39185729748205467 |
 
 ### Mode Statistics
-#### Total Major: 7249
-#### Total Minor: 4677
+#### Total Major: 7346
+#### Total Minor: 4749
 
 ### Mode by Genre
 | Genre | Major | Minor | Ratio (Major:Minor) |
 | --- | ----- | ----- | ----- |
-| alternative/indie | 3645 | 1600 | 2.278125 |
-| rock | 7474 | 3833 | 1.949908687711975 |
-| pop (includes country) | 5273 | 2843 | 1.8547309180443194 |
-| classical/jazz | 3389 | 1841 | 1.8408473655621944 |
-| others | 4497 | 2576 | 1.7457298136645962 |
-| hip hop/r&b | 3763 | 3022 | 1.2452018530774323 |
-| edm/electronic | 4295 | 4162 | 1.0319557904853436 |
+| alternative/indie | 3690 | 1605 | 2.2990654205607477 |
+| rock | 7514 | 3843 | 1.9552432995055946 |
+| pop (includes country) | 5306 | 2850 | 1.8617543859649124 |
+| classical/jazz | 3399 | 1849 | 1.83829096809086 |
+| others | 4541 | 2605 | 1.7431861804222648 |
+| hip hop/r&b | 3778 | 3036 | 1.2444005270092227 |
+| edm/electronic | 4459 | 4318 | 1.0326540064844836 |
 
 ### Represented Genres
 | Category | Represented Genres |
 | --- | ----- |
-| others | neo mellow, funk rj, sufi, show tunes, darksynth, roots reggae, contemporary post-bop, small room, black sludge, deathgrind, chalga, sigilkore, samba, easy listening, tin pan alley, escape room, sertanejo, liquid funk, skramz, kentucky roots, jam band, sky room, musique guadeloupe, emo, grime, violao, zimdancehall, islamic recitation, futuristic swag, reggae fusion, slowed and reverb, chiptune, string band, ethereal wave, neapolitan funk, bachata dominicana, funk paulista, mizrahi, corrosion, trip hop, tearout, kabyle, arabesk, braindance, supergroup, abstract, danseband, zeuhl, hard bop, arrocha, military band, funk mtg, fourth world, musique urbaine kinshasa, spacewave, pixel, quiet storm, plugg, new england emo, rumba, classic luk thung, historically informed performance, north carolina roots, world worship, texasgaze, mambo chileno, stomp and holler, laiko, urbano latino, reparto, icelandic experimental, new weird america, norteno, funky breaks, bakersfield sound, schlager, vgm remix, p funk, rif, australian psych, sped up, cosmic american, post-disco, german dance, stride, japanese vgm, hiplife, cowboy western, drone, deep ccm, mpb, levenslied, diy emo, deep adult standards, manele, modern bollywood, banda, broadway, coverchill, minimal dub, classic schlager, grimewave, early avant garde, carnaval, speedrun, anthem emo, neo-pagan, italo disco, opm, dark wave, british dance band, big beat, rebetiko, pastoral, drain, bolero, forro, pixie, sound art, chinese audiophile, charva, balkan beats, doujin, adult standards, comic, kabyle moderne, neo-psychedelic, chicago bop, italo dance, salsa puertorriquena, chill lounge, motivation, doomgaze, nu disco, meme, madchester, reggaeton, dixieland, north carolina emo, tropical, smooth saxophone, cantautor catala, zoomergaze, psychedelic doom, stomp and flutter, zouk riddim, lounge, galante era, adoracao, brazilian gospel, australian dance, groove gospel, sertanejo tradicional, flamenco urbano, kompa, nouvelle chanson francaise, impressionism, japanese chillhop, college marching band, reggaeton flow, warm drone, southern gospel, urban contemporary, torch song, uk dance, new tribe, talent show, canzone napoletana, lilith, bachata, ndombolo, southern americana, new americana, salsa, pluggnb, yodeling, slayer, progressive bluegrass, bossa nova, hands up, spectra, nashville americana, avant-prog, hollywood, minimal wave, motown, afrofuturism, electra, old school highlife, cantautor, zolo, pagode novo, chanson, christian music, relaxative, minneapolis sound, pagode, kwaito, ritmo kombina, ranchera, psydub, jungle, reggae maghreb, j-pixie, voidgaze, dancehall, carnaval cadiz, freakbeat, minimalism, pagode baiano, drumfunk, flamenco guitar, tamazight, aussietronica, rawstyle, turkish psych, arrochadeira, hi-nrg, poetry, wonky, urbano espanol, qawwali, filmi, musica mexicana, psychill, ccm, reggaeton colombiano, drift, flamenco fusion, deep rai, azontobeats, iskelma, sertanejo universitario, flamenco, mellow gold, future funk, c86, funk, classic iskelma, classify, gotlandsk musik, synth funk, capoeira, video game music, chillwave, bouzouki, harlem renaissance, birmingham grime, karadeniz turkuleri, bubblegum dance, footwork, nashville sound, drama, vocal harmony group, goregrind, dreamgaze, zim gospel, new french touch, g funk, livetronica, lustrum, marching band, experimental vocal, full on, fado, bossbeat, rumba congolaise, early music, vapor twitch, cubaton, experimental, zxc, girl group, bluegrass gospel, reggae, industrial, 5th wave emo, humppa, no wave, quran, mariachi cristiano, ragga jungle, jump up, dreamo, new age piano, canadian americana, nu gaze, british choir, funk carioca, disco, chopped and screwed, doo-wop, anime, funk mandelao, music hall, afrobeats, spanish experimental, beatlesque, roots americana, moog, reggae cristao, ukg revival, melancholia, elephant 6, worship, tape club, crank wave, muzica etno |
-| rock | christian metalcore, nu metal, classic rock, blues rock, folk punk, modern hard rock, synth punk, alternative pop, symphonic black metal, australian metalcore, bubblegrunge, french rock, heartland rock, rock independant francais, atlanta punk, gothic rock, rock, post-punk, birmingham metal, swamp rock, christian rock, post-metal, turkish alternative, ska punk, experimental rock, acoustic punk, metalcore, sludge metal, rock progressif francais, melodic deathcore, symphonic rock, uk metalcore, arab alternative, swedish punk, argentine rock, alternative metal, glam rock, skate punk, punk 'n' roll, german alternative rap, melodic hardcore, swedish pop punk, post-punk argentina, art rock, long island punk, easycore, texas pop punk, metal mineiro, boston rock, crossover thrash, rock en espanol, cyberpunk, canadian post-hardcore, drone metal, christian metal, pop rock, industrial rock, modern folk rock, modern alternative rock, nintendocore, art punk, new wave of screamo, chinese indie rock, hardcore techno, sludgecore, czech folk rock, dark hardcore, rap rock, speed metal, norwegian black metal, melodic metalcore, funk metal, punk urbano, atmospheric post-metal, scorecore, rap metal, latinx alternative, hardcore punk, blackened hardcore, rock catala, noise rock, boston punk, death metal, british indie rock, socal pop punk, pagan black metal, folk rock, brazilian thrash metal, alternative dance, hard rock, corecore, rock gospel brasileiro, brazilian punk, doom metal, classic garage rock, chill breakcore, chicago punk, post-grunge, weirdcore, australian garage punk, space rock, southern rock, nerdcore brasileiro, brazilian metal, glam metal, christian alternative rock, glitchcore, scenecore, swedish alternative rock, garage rock, horrorcore, brutal death metal, latin metal, deathrash, post-rock, chilean rock, surf punk, tennessee metal, uk alternative pop, metal, math rock, spanish punk, kiwi rock, swedish garage rock, dc hardcore, classic russian rock, merseybeat, russian metal, symphonic deathcore, happy hardcore, slacker rock, orgcore, chicago hardcore, dark post-punk, swedish metalcore, krautrock, blues-rock guitar, rock-and-roll, thrash metal, dance-punk, modern blues rock, russian punk rock, rockabilly, horror punk, indonesian pop rock, russian rock, alt z, modern country rock, british alternative rock, trancecore, screamo, anadolu rock, brazilian hardcore, otacore, piano rock, brutal deathcore, anime rock, alternative pop rock, latin alternative, punk blues, german rock, brazilian groove metal, post-post-hardcore, stoner rock, technical groove metal, rock alternativo espanol, hyper-rock, blackened screamo, british invasion, celtic rock, protopunk, american post-punk, j-rock, power blues-rock, sadcore, canadian metal, melodic black metal, classic psychedelic rock, country rock, nu-metalcore, canadian pop punk, dance rock, brazilian punk rock, album rock, grunge, progressive rock, indie rock, screamocore, electronic rock, miami metal, celtic punk, alternative r&b, spacegrunge, japanese alternative pop, ostrock, latin rock, punk, alternative rock, rock andaluz, nz hardcore, mashcore, alte, yacht rock, psychedelic rock, power-pop punk, czech rock, alternative country, old school thrash, russian folk rock, new jersey punk, stoner metal, rock in opposition, uk post-punk, acoustic rock, australian rock, black metal, indie punk, rap metalcore, funk rock, deep happy hardcore, classic canadian rock, deathcore, indie garage rock, grindcore, canadian rock, garage rock revival, canadian indie rock, scottish rock, irish rock, post-hardcore, korean indie rock, pop punk, roots rock, uk doom metal, emo punk, alternative hip hop, emocore, vancouver punk, instrumental math rock, russian punk, groove metal, anime score, industrial metal, permanent wave, suomi rock, czech pop rock, canadian punk, reggae rock, soft rock, digital hardcore, nordic post-rock, indie rock peruano, new jersey hardcore, grungegaze, mexican rock, alternative emo, turkish rock, spanish rock, neon pop punk, modern rock, uk post-hardcore, indie rock italiano, detroit rock, nz punk, breakcore, blackened deathcore, uk alternative hip hop, psychedelic blues-rock, icelandic rock |
-| edm/electronic | hypnotic techno, lo-fi study, tribal house, basshall, nz electronic, electronica argentina, glitch hop, ambient pop, ambient dub techno, bubblegum bass, downtempo fusion, deep dnb, nederlandse hardstyle, classic house, german dark minimal techno, dark progressive house, dutch dnb, old school bassline, gaming dubstep, dancefloor dnb, scottish electronic, glitch ambient, classic hardstyle, chillstep, synthwave, swedish electropop, danish electronic, pop electronico, future house, hard bass, house, indian edm, electronica, synthwave brasileiro, bouncy house, russian edm, moombahton, ambient folk, minimal melodic techno, gaming edm, deep house, ambient idm, progressive electro house, slap house, euphoric hardstyle, darkstep, canadian electropop, funky tech house, hardcore techno, kawaii future bass, electro house, dark techno, electro, progressive trance, japanese electronic, disco house, electronic trap, progressive psytrance, glitchbreak, drill and bass, techno, bassline, uk bass, chicago house, intelligent dance music, swedish electronic, bubble trance, bristol electronic, ambient house, brazilian edm, electrofox, classic garage rock, new rave, ukrainian electronic, j-ambient, techno remix, german trance, speed garage, australian garage punk, electropowerpop, french techno, bass trap, grave wave, organic ambient, rave funk, dream trance, dubsteppe, glitch, dubstep, glitchcore, deep uplifting trance, edm, goa trance, australian electropop, garage rock, stutter house, filthstep, rave, eurodance, uk garage, atlanta bass, ambient worship, swiss house, abstract idm, ambient lo-fi, vocal trance, float house, leipzig electronic, complextro, melbourne bounce international, russian rave, berlin minimal techno, lo-fi, swedish garage rock, electro-pop francais, neurofunk, deep groove house, classic dubstep, compositional ambient, dutch edm, acid idm, deathstep, bass house, lo-fi vgm, belgian techno, canadian electronic, trancecore, jazzy dnb, filter house, ambient psychill, melbourne bounce, vocal house, deep disco house, sad lo-fi, lo-fi indie, electroclash, hamburg electronic, tech house, diva house, german house, hard trance, drum and bass, electro swing, belgian dnb, electro latino, brazilian bass, electronic rock, future bass, belgian edm, ambient, acid techno, downtempo, brostep, spanish techno, organic house, lo-fi house, acid house, deep tech house, piedmont blues, psychedelic trance, tropical house, minimal dnb, bounce, hip house, french tech house, indie garage rock, minimal techno, garage rock revival, melodic house, german dnb, progressive house, electro jazz, deep idm, deep euro house, breakbeat, anime lo-fi, uk tech house, argentine ambient, experimental ambient, dutch house, gym hardstyle, japanese idm, german techno, french dnb, microhouse, uk dnb, future bounce, electropop, uplifting trance, classic progressive house, melodic dubstep, substep, lo-fi sleep, big room, miami bass, uk experimental electronic, deep minimal techno, turkish electronic, future garage, nordic house, nz dnb, detroit techno, jazz house, italian electronica, 2-step, pop edm, deep liquid bass, halftime dnb, trance, dub techno, melodic techno |
-| pop (includes country) | folk-pop, europop, alternative pop, popping, jazz pop, pop, traditional country, ambient pop, ghanaian pop, underground power pop, country quebecois, classic oklahoma country, modern country pop, hyperpop, gauze pop, finnish dance pop, boy band, countrygaze, mandopop, synthpop, swedish electropop, art pop, pop electronico, finnish pop, noise pop, desi pop, britpop, swedish country, latin viral pop, classic australian country, indie pop, pop folk, taiwan pop, swedish pop punk, texas pop punk, pop flamenco, viral pop, proto-hyperpop, country, spanish new wave, spanish pop, classic country pop, pop rock, twee pop, pop romantico, canadian contemporary country, canadian electropop, social media pop, new wave of screamo, shimmer pop, classic swedish pop, indie pop rap, modern indie pop, indie dream pop, south african pop, malagasy pop, chinese indie pop, deep acoustic pop, classic thai pop, socal pop punk, afropop, transpop, thai folk pop, icelandic pop, bubblegum pop, colombian pop, turkish pop, acoustic pop, norwegian pop, italian pop, baroque pop, neo-synthpop, country road, jangle pop, metropopolis, swedish indie pop, portuguese pop, pop nacional, german country, experimental pop, classic pakistani pop, punjabi pop, moldovan pop, hypnagogic pop, electropowerpop, j-pop, pop dance, classic israeli pop, australian electropop, modern power pop, italian adult pop, post-teen pop, french indie pop, uk alternative pop, k-pop, electro-pop francais, modern dream pop, pop reggaeton, pop emo, dance pop, swamp pop, k-pop girl group, pop rap, bulgarian pop, indonesian pop rock, classic uk pop, japanese teen pop, classic venezuelan pop, swedish synthpop, modern country rock, sophisti-pop, deep new wave, alternative pop rock, pop r&b, latin arena pop, mexican pop, mainland chinese pop, dark pop, pop soul, chamber pop, irish pop, malaysian mandopop, swedish pop, canadian country, tamil pop, dream pop, country gospel, country dawn, p-pop, new wave pop, country rap, latin pop, malaysian tamil pop, pop urbaine, country rock, singer-songwriter pop, spanish indie pop, canadian pop punk, classic italian pop, puerto rican pop, barbadian pop, funk pop, japanese alternative pop, bedroom pop, power-pop punk, chill dream pop, alternative country, hyperpop francais, candy pop, czech pop, classic finnish pop, contemporary country, indonesian pop, popwave, sunshine pop, nz pop, k-pop boy group, collage pop, classic texas country, pop punk, outlaw country, uk pop, shiver pop, power pop, georgian pop, pacific islands pop, australian pop, pop venezolano, czech pop rock, space age pop, brill building pop, psychedelic pop, electropop, 5th gen k-pop, popgaze, country boogie, scandipop, bitpop, neon pop punk, scottish new wave, nigerian pop, hip pop, german pop, pop edm, country blues, canadian pop, new wave |
-| alternative/indie | folk-pop, toronto indie, arab folk, folk punk, alternative pop, brighton indie, georgian folk, traditional british folk, eau claire indie, quebec indie, canadian indie, malagasy folk, canadian singer-songwriter, turkish alternative, acoustic punk, indonesian singer-songwriter, kentucky indie, indie pop, knoxville indie, pop folk, arab alternative, pov: indie, alternative metal, icelandic indie, kelowna bc indie, albuquerque indie, german alternative rap, ambient folk, oc indie, folk, singer-songwriter, peruvian indie, worcester ma indie, caucasian folk, gainesville indie, midwest shoegaze, modern folk rock, modern alternative rock, chinese indie rock, charlotte nc indie, freak folk, tampa indie, czech folk rock, indie pop rap, northern irish indie, modern indie pop, j-acoustic, scottish singer-songwriter, indie dream pop, latinx alternative, louisville indie, chinese indie pop, deep acoustic pop, british indie rock, columbus ohio indie, folk rock, thai folk pop, alternative dance, chicago indie, charlottesville indie, acoustic pop, philly indie, swedish indie pop, sheffield indie, irish singer-songwriter, australian indie, christian alternative rock, fort worth indie, sacramento indie, swedish alternative rock, denver indie, lafayette indie, olympia wa indie, indie folk, indie tico, oakland indie, nl folk, french indie pop, uk alternative pop, luxembourgian indie, acoustic opm, icelandic folk, geek folk, taiwan indie, cascadia shoegaze, japanese singer-songwriter, french indie folk, neo-singer-songwriter, indian indie, pennsylvania shoegaze, indietronica, alt z, british alternative rock, northwest china indie, ectofolk, christian indie, alternative pop rock, latin alternative, shoegaze, lo-fi indie, melbourne indie, rock alternativo espanol, vegas indie, dc indie, gen z singer-songwriter, new york shoegaze, acoustic guitar cover, singer-songwriter pop, spanish indie pop, icelandic singer-songwriter, midwest emo, indie rock, indian singer-songwriter, asbury park indie, alternative r&b, saskatchewan indie, chinese singer-songwriter, la indie, japanese alternative pop, british folk, alternative rock, alte, bay area indie, indie surf, indie catala, newfoundland indie, alternative country, russian folk rock, indie game soundtrack, acoustic rock, anti-folk, malmo indie, scottish indie, indie punk, connecticut indie, indie garage rock, canadian indie rock, american shoegaze, nordic folk, korean indie rock, hindi indie, folktronica, alternative hip hop, nashville singer-songwriter, new england shoegaze, antilliaanse folklore, el paso indie, channel islands indie, acoustic blues, indie rock peruano, czech folk, alternative emo, indie rock italiano, turkish folk, boston folk, west virginia indie, taiwan singer-songwriter, brooklyn indie, auckland indie, boston indie, seattle indie, cambridgeshire indie, north carolina indie, alabama indie, indie hip hop, indie soul, indie anthem-folk, uk alternative hip hop, indie jazz, portland indie |
-| classical/jazz | chamber orchestra, soul blues, western swing, italian jazz, blues rock, euroska, baroque, blues, contemporary jazz, rebel blues, instrumental worship, turkish jazz, jazz rap, jazz pop, cool jazz, ska, latin classical, brega romantico, icelandic classical, harmonica blues, austrian orchestra, nordic soundtrack, instrumental hip hop, ska punk, czech classical, skate punk, turkish classical, nu jazz, classical performance, late romantic era, orchestral performance, english baroque, modern jazz piano, southern soul blues, pop romantico, vintage jazz, chicago blues, israeli classical piano, neoclassical darkwave, ska mexicano, calming instrumental, italian jazz fusion, swing italiano, jazz blues, orchestra, radio symphony, delta blues, early romantic era, korean instrumental, ukrainian classical, german soundtrack, italian baroque, baroque pop, american modern classical, deep soundtrack, jazz trumpet, jazz drums, canadian contemporary classical, new jack swing, early modern classical, classical era, japanese contemporary classical, jazz fusion, canadian modern jazz, jazz cover, neo soul-jazz, nordic classical piano, ska revival, christmas instrumental, italian contemporary jazz, oceania soundtrack, classical organ, chinese classical piano, british blues, texas blues, turkish modern jazz, russian modern classical, soul jazz, classical piano, modern big band, chinese classical performance, german baroque, russian ska, instrumental soul, blues-rock guitar, string orchestra, modern blues rock, jazz orchestra, classic soundtrack, jazz trombone, indonesian ska, jazztronica, american contemporary classical, german romanticism, japanese classical, french soundtrack, jazzy dnb, punk blues, desert blues, big band, german orchestra, jazz, post-romantic era, batidao romantico, electro swing, electric blues, power blues-rock, classical, turkish instrumental, ska jazz, instrumental grime, canadian classical piano, british soundtrack, arabic jazz, contemporary vocal jazz, chinese jazz, orchestral soundtrack, memphis blues, wind symphony, saskatchewan indie, traditional ska, concert band, german ska, new romantic, free jazz, indie game soundtrack, jazz piano, piedmont blues, brazilian classical, man's orchestra, electro jazz, baroque ensemble, hot jazz, russian romanticism, smooth jazz, brazilian jazz, rhythm and blues, instrumental math rock, japanese soundtrack, traditional blues, movie tunes, acoustic blues, jazz clarinet, south african jazz, vintage italian soundtrack, modern blues, norwegian classical, swing, ska argentino, jazz saxophone, british orchestra, neo-classical, vocal jazz, jazz house, instrumental funk, latin soundtrack, soundtrack, british jazz, country blues, arabic instrumental, psychedelic blues-rock, indie jazz, bebop |
-| hip hop/r&b | japanese old school hip hop, soul blues, gangster rap, east coast hip hop, atl drill, korean r&b, jazz rap, ohio hip hop, dirty south rap, latin hip hop, cloud rap, rap latina, old school atlanta hip hop, trap boricua, instrumental hip hop, dark r&b, philly drill, afro soul, uk hip hop, nottingham hip hop, southern hip hop, atl trap, turkce drill, german alternative rap, aggressive phonk, miami hip hop, canadian contemporary r&b, old school hip hop, phonk, southern soul blues, chill phonk, rap rock, rage rap, contemporary r&b, memphis soul, atl hip hop, indie pop rap, southern soul, ghanaian hip hop, rap metal, swedish soul, electronic trap, drill and bass, canadian hip hop, finnish hip hop, rap geek, scandinavian r&b, kansas city hip hop, trap latino, vapor soul, k-rap, r&b en espanol, memphis phonk, kentucky hip hop, underground hip hop, arab trap, bass trap, phonk brasileiro, german hip hop, neo soul-jazz, rap, rap antillais, italian hip hop, nashville hip hop, neo soul, rap francais, turkish trap, psychedelic hip hop, houston rap, portland hip hop, conscious hip hop, new orleans rap, trap chileno, french hip hop, soul jazz, queens hip hop, west coast rap, trap queen, melodic rap, chicago soul, chinese r&b, instrumental soul, british soul, pop rap, crunk, mississippi hip hop, drill espanol, experimental hip hop, north carolina hip hop, brooklyn drill, classic soul, sad rap, pop r&b, hamburg hip hop, pop soul, uk alternative hip hop, abstract hip hop, lgbtq+ hip hop, northern soul, country rap, canadian trap, soul, neo r&b, florida rap, rap kreyol, dirty texas rap, r&b, bedroom r&b, chicago rap, german drill, alternative r&b, memphis hip hop, turkish hip hop, pittsburgh rap, afro drill, deep underground hip hop, souldies, rap metalcore, golden age hip hop, drift phonk, r&b francais, gym phonk, trap italiana, dark trap, oakland hip hop, drumless hip hop, political hip hop, detroit hip hop, meme rap, alternative hip hop, drill, chicago drill, new york drill, florida drill, emo rap, spanish hip hop, deep southern trap, afro r&b, rap algerien, trap argentino, trap, norwegian hip hop, nyc rap, rap cristao, argentine hip hop, christian hip hop, south carolina hip hop, hip hop, nz hip hop, indie hip hop, indie soul, drill francais, baton rouge rap, hip hop tuga |
+| others | kabyle, salsa puertorriquena, rebetiko, small room, contemporary post-bop, charva, early avant garde, coverchill, turkish psych, wonky, grimewave, flamenco, chinese audiophile, musica mexicana, slowed and reverb, nu disco, warm drone, carnaval, slayer, ccm, trip hop, jam band, rif, afrobeats, aussietronica, vgm remix, bolero, vocal harmony group, grime, carnaval cadiz, old school highlife, iskelma, world worship, chillsynth, spectra, drone, cantautor catala, experimental vocal, electra, groove gospel, rumba congolaise, drama, ndombolo, meme, southern gospel, lounge, speedrun, talent show, canadian americana, string band, australian dance, brazilian gospel, sertanejo universitario, dancehall, sertanejo, doomgaze, spacewave, ritmo kombina, urban contemporary, chanson, uk dance, arrocha, funk rj, goregrind, sky room, post-disco, german dance, chillwave, ragga jungle, tin pan alley, birmingham grime, danseband, elephant 6, j-pixie, vapor twitch, mizrahi, neo mellow, zeuhl, madchester, new weird america, emo, moog, footwork, afrofuturism, funk mandelao, 5th wave emo, classic schlager, sertanejo tradicional, tearout, mariachi cristiano, pagode, azontobeats, hi-nrg, impressionism, italo dance, no wave, balkan beats, college marching band, psychill, future funk, urbano latino, supergroup, chicago bop, marching band, hands up, deep rai, british dance band, bakersfield sound, arrochadeira, schlager, hard bop, hollywood, nu gaze, doujin, quiet storm, ranchera, opm, tamazight, minimal dub, comic, escape room, smooth saxophone, new england emo, stride, ukg revival, psydub, kabyle moderne, deep adult standards, p funk, motown, skramz, classify, progressive bluegrass, dreamgaze, pixel, freakbeat, mpb, british choir, new tribe, qawwali, capoeira, kompa, historically informed performance, drain, chiptune, reggae, full on, christian music, girl group, zxc, g funk, video game music, sufi, disco, neapolitan funk, islamic recitation, futuristic swag, experimental, sped up, psychedelic doom, stomp and flutter, japanese vgm, black sludge, arabesk, spanish experimental, nashville americana, dixieland, funky breaks, jungle, rawstyle, flamenco guitar, urbano espanol, north carolina roots, darksynth, violao, musique urbaine kinshasa, neo-psychedelic, hiplife, pagode novo, musique guadeloupe, diy emo, galante era, mambo chileno, icelandic experimental, corrosion, zimdancehall, worship, reggaeton flow, reggae cristao, flamenco urbano, zoomergaze, music hall, funk paulista, bouzouki, classic luk thung, avant-prog, norteno, kwaito, yodeling, funk mtg, doo-wop, north carolina emo, roots americana, cubaton, pluggnb, rumba, muzica etno, harlem renaissance, drumfunk, karadeniz turkuleri, bachata, c86, quran, southern americana, reggaeton, bossbeat, anime, new french touch, australian psych, humppa, new age piano, gotlandsk musik, nouvelle chanson francaise, plugg, tropical, cowboy western, bluegrass gospel, drift, deathgrind, melancholia, stomp and holler, zouk riddim, relaxative, kentucky roots, sigilkore, motivation, livetronica, pastoral, minimal wave, pixie, sound art, manele, cosmic american, flamenco fusion, classic iskelma, tape club, nashville sound, torch song, show tunes, neo-pagan, zim gospel, bachata dominicana, adoracao, beatlesque, chalga, pagode baiano, chill lounge, easy listening, funk, roots reggae, military band, synth funk, italo disco, fado, cantautor, lilith, crank wave, anthem emo, new americana, ethereal wave, funk carioca, modern bollywood, industrial, lustrum, poetry, zolo, texasgaze, chopped and screwed, adult standards, liquid funk, early music, big beat, banda, forro, salsa, minimalism, levenslied, dark wave, deep ccm, reparto, braindance, reggaeton colombiano, fourth world, jump up, voidgaze, minneapolis sound, broadway, samba, mellow gold, bubblegum dance, japanese chillhop, abstract, dreamo, reggae fusion, filmi, laiko, canzone napoletana, bossa nova, reggae maghreb |
+| rock | uk alternative pop, spacegrunge, vancouver punk, turkish rock, weirdcore, korean indie rock, brazilian groove metal, swedish punk, crossover thrash, indonesian pop rock, hardcore punk, scenecore, modern blues rock, album rock, dance rock, punk, rock in opposition, sludge metal, reggae rock, death metal, bubblegrunge, new jersey punk, atlanta punk, hyper-rock, celtic punk, russian folk rock, rock, post-rock, uk alternative hip hop, pop rock, ostrock, ska punk, swamp rock, christian alternative rock, classic garage rock, space rock, rock alternativo espanol, dance-punk, canadian pop punk, russian metal, british invasion, dark hardcore, canadian punk, alternative r&b, french rock, screamocore, rock gospel brasileiro, icelandic rock, rock progressif francais, indie rock peruano, experimental rock, blues-rock guitar, math rock, dark post-punk, post-hardcore, indie rock italiano, speed metal, deathrash, argentine rock, horror punk, brazilian punk, australian rock, groove metal, neon pop punk, new jersey hardcore, arab alternative, melodic black metal, spanish rock, alt z, indie rock, sadcore, post-metal, deep happy hardcore, j-rock, nz punk, australian metalcore, alternative dance, yacht rock, swedish alternative rock, modern hard rock, classic russian rock, indie punk, norwegian black metal, modern rock, post-post-hardcore, permanent wave, punk 'n' roll, chilean rock, swedish garage rock, happy hardcore, post-punk, rock catala, trancecore, czech folk rock, australian garage punk, merseybeat, latinx alternative, industrial metal, alternative country, garage rock, czech pop rock, glam rock, christian metalcore, krautrock, piano rock, dc hardcore, long island punk, horrorcore, new wave of screamo, rock independant francais, noise rock, canadian post-hardcore, roots rock, brazilian metal, rock en espanol, sludgecore, brutal deathcore, czech rock, psychedelic blues-rock, rockabilly, rock andaluz, british indie rock, psychedelic rock, boston rock, chinese indie rock, canadian rock, power blues-rock, blackened hardcore, brazilian punk rock, russian punk, alternative hip hop, alternative rock, german alternative rap, metalcore, tennessee metal, folk rock, chill breakcore, uk metalcore, brazilian hardcore, post-grunge, chicago punk, black metal, canadian indie rock, acoustic punk, classic psychedelic rock, blues rock, melodic deathcore, japanese alternative pop, punk urbano, irish rock, rap metal, rap metalcore, scorecore, doom metal, spanish punk, uk doom metal, russian punk rock, symphonic black metal, modern country rock, metal mineiro, rock-and-roll, instrumental math rock, modern alternative rock, emo punk, stoner metal, surf punk, blackened deathcore, atmospheric post-metal, british alternative rock, anadolu rock, drone metal, art rock, grungegaze, power-pop punk, scottish rock, birmingham metal, orgcore, detroit rock, pagan black metal, corecore, miami metal, christian rock, nu-metalcore, post-punk argentina, easycore, german rock, nordic post-rock, alternative pop, cyberpunk, art punk, nintendocore, uk post-punk, electronic rock, southern rock, latin rock, kiwi rock, alternative emo, russian rock, uk post-hardcore, pop punk, alte, texas pop punk, symphonic rock, classic rock, boston punk, heartland rock, hard rock, blackened screamo, symphonic deathcore, protopunk, swedish pop punk, nerdcore brasileiro, modern folk rock, nz hardcore, brutal death metal, synth punk, celtic rock, gothic rock, thrash metal, digital hardcore, screamo, american post-punk, grunge, industrial rock, socal pop punk, technical groove metal, latin alternative, rap rock, funk rock, nu metal, classic canadian rock, canadian metal, alternative metal, melodic metalcore, deathcore, grindcore, latin metal, soft rock, old school thrash, hardcore techno, anime score, suomi rock, alternative pop rock, garage rock revival, punk blues, funk metal, melodic hardcore, otacore, brazilian thrash metal, turkish alternative, mashcore, emocore, country rock, chicago hardcore, glitchcore, christian metal, glam metal, breakcore, swedish metalcore, indie garage rock, progressive rock, skate punk, metal, anime rock, acoustic rock, slacker rock, stoner rock, mexican rock, folk punk |
+| edm/electronic | electronic trap, future bass, deep liquid bass, abstract idm, moombahton, french techno, electro swing, uk dnb, sad lo-fi, acid idm, dubstep, bassline, german house, chillstep, breakbeat, deep groove house, psychedelic trance, classic garage rock, melbourne bounce international, drum and bass, detroit techno, uk tech house, belgian dnb, lo-fi chill, bounce, electropop, euphoric hardstyle, ambient dub techno, hard trance, swedish electropop, ambient pop, classic hardstyle, acid house, russian edm, lo-fi vgm, deep minimal techno, deep idm, synthwave brasileiro, old school bassline, bristol electronic, experimental ambient, jazz house, classic dubstep, german trance, progressive electro house, german dnb, glitch hop, argentine ambient, lo-fi indie, chicago house, dark techno, italian electronica, tropical house, nz dnb, electro, anime lo-fi, microhouse, gym hardstyle, ambient folk, electro-pop francais, big room, spanish techno, swedish garage rock, tech house, jazzy dnb, electro jazz, downtempo fusion, trancecore, vocal house, glitch, nz electronic, electro house, dubsteppe, australian garage punk, ambient psychill, garage rock, danish electronic, substep, stutter house, progressive trance, dutch edm, deep dnb, deep disco house, bass trap, electrofox, j-ambient, intelligent dance music, indian edm, darkstep, house, tribal house, minimal melodic techno, russian rave, nederlandse hardstyle, belgian techno, progressive psytrance, synthwave, melbourne bounce, hard bass, lo-fi sleep, melodic dubstep, bass house, turkish electronic, bouncy house, edm, brazilian bass, deep tech house, goa trance, glitch ambient, ukrainian electronic, canadian electropop, funky tech house, basshall, french tech house, drill and bass, bubble trance, compositional ambient, hamburg electronic, future house, progressive house, gaming dubstep, float house, austrian dnb, lo-fi, techno, filter house, rave, german techno, dutch house, ambient idm, australian electropop, minimal techno, leipzig electronic, deathstep, scottish electronic, grave wave, riddim dubstep, electronica argentina, belgian edm, vocal trance, future bounce, brazilian edm, german dark minimal techno, uk experimental electronic, 2-step, ambient lo-fi, ambient, deep house, classic house, dutch dnb, slap house, glitchbreak, electronic rock, eurodance, organic ambient, dream trance, kawaii future bass, miami bass, new rave, brostep, diva house, uk bass, deep uplifting trance, lo-fi study, acid techno, downtempo, future garage, uk garage, speed garage, deep euro house, melodic house, melodic techno, swiss house, gaming edm, japanese electronic, swedish electronic, electroclash, atlanta bass, nordic house, french dnb, electronica, minimal dnb, hip house, complextro, neurofunk, disco house, rave funk, hardcore techno, dub techno, garage rock revival, lo-fi house, canadian electronic, ambient worship, piedmont blues, bubblegum bass, pop electronico, hypnotic techno, classic progressive house, techno remix, glitchcore, trance, electro latino, berlin minimal techno, indie garage rock, dark progressive house, pop edm, uplifting trance, halftime dnb, organic house, filthstep, japanese idm, ambient house, electropowerpop, dancefloor dnb |
+| pop (includes country) | pop nacional, uk alternative pop, funk pop, indonesian pop rock, bitpop, shimmer pop, canadian pop, candy pop, deep new wave, pop flamenco, nigerian pop, pop rock, desi pop, latin arena pop, canadian pop punk, classic oklahoma country, tamil pop, country quebecois, electropop, spanish new wave, swamp pop, swedish electropop, spanish pop, ambient pop, german country, swedish pop, latin viral pop, country boogie, pop r&b, neon pop punk, malagasy pop, pop emo, country dawn, german pop, traditional country, hypnagogic pop, portuguese pop, britpop, swedish indie pop, spanish indie pop, electro-pop francais, turkish pop, taiwan pop, malaysian tamil pop, canadian country, hyperpop, ghanaian pop, alternative country, czech pop rock, classic finnish pop, afropop, new wave pop, new wave of screamo, mainland chinese pop, hyperpop francais, folk-pop, experimental pop, gauze pop, dance pop, popwave, scandipop, classic australian country, outlaw country, classic thai pop, k-pop boy group, uk pop, power pop, europop, pacific islands pop, latin pop, pop reggaeton, swedish country, jazz pop, indie pop, brill building pop, barbadian pop, country rap, bulgarian pop, finnish dance pop, noise pop, space age pop, irish pop, japanese alternative pop, social media pop, canadian electropop, synthpop, finnish pop, pop romantico, modern country rock, czech pop, new wave, pop dance, scottish new wave, italian adult pop, canadian contemporary country, japanese teen pop, south african pop, underground power pop, popgaze, pop soul, post-teen pop, french indie pop, psychedelic pop, neo-synthpop, classic pakistani pop, bedroom pop, australian electropop, power-pop punk, mexican pop, country, colombian pop, jangle pop, shiver pop, pop venezolano, hip pop, baroque pop, indie pop rap, acoustic pop, australian pop, modern indie pop, alternative pop, icelandic pop, georgian pop, mandopop, pop rap, italian pop, k-pop girl group, pop punk, classic swedish pop, sunshine pop, puerto rican pop, country gospel, k-pop, nz pop, texas pop punk, 5th gen k-pop, proto-hyperpop, metropopolis, modern dream pop, popping, swedish pop punk, modern country pop, contemporary country, boy band, pop urbaine, classic venezuelan pop, art pop, transpop, socal pop punk, countrygaze, chinese indie pop, swedish synthpop, singer-songwriter pop, modern power pop, collage pop, bubblegum pop, sophisti-pop, classic italian pop, country blues, chamber pop, alternative pop rock, classic texas country, deep acoustic pop, country rock, pop electronico, dark pop, moldovan pop, viral pop, classic israeli pop, classic country pop, pop, norwegian pop, pop edm, indonesian pop, dream pop, malaysian mandopop, pop folk, punjabi pop, twee pop, classic uk pop, j-pop, indie dream pop, country road, p-pop, electropowerpop, chill dream pop, thai folk pop |
+| alternative/indie | uk alternative pop, albuquerque indie, korean indie rock, el paso indie, newfoundland indie, folktronica, luxembourgian indie, kelowna bc indie, malmo indie, japanese singer-songwriter, shoegaze, nashville singer-songwriter, ectofolk, russian folk rock, uk alternative hip hop, northern irish indie, christian alternative rock, rock alternativo espanol, icelandic singer-songwriter, anti-folk, indie jazz, indie game soundtrack, alternative r&b, peruvian indie, fort worth indie, geek folk, portland indie, indie rock peruano, cascadia shoegaze, indie surf, indie rock italiano, czech folk, freak folk, olympia wa indie, acoustic guitar cover, arab alternative, pennsylvania shoegaze, louisville indie, alt z, indie rock, alternative dance, neo-singer-songwriter, swedish alternative rock, lo-fi indie, indie anthem-folk, indie punk, boston folk, swedish indie pop, spanish indie pop, ambient folk, caucasian folk, vegas indie, czech folk rock, sacramento indie, columbus ohio indie, bay area indie, canadian indie, latinx alternative, channel islands indie, alternative country, christian indie, malagasy folk, indie catala, folk, arab folk, folk-pop, denver indie, boston indie, british indie rock, north carolina indie, french indie folk, chinese indie rock, indian indie, alternative hip hop, german alternative rap, alternative rock, brooklyn indie, indie pop, pov: indie, folk rock, melbourne indie, seattle indie, canadian singer-songwriter, indie soul, worcester ma indie, canadian indie rock, quebec indie, acoustic punk, japanese alternative pop, gainesville indie, eau claire indie, knoxville indie, hindi indie, indie tico, northwest china indie, chicago indie, british folk, modern alternative rock, sheffield indie, icelandic folk, asbury park indie, french indie pop, new york shoegaze, british alternative rock, turkish folk, connecticut indie, indie hip hop, singer-songwriter, charlottesville indie, georgian folk, new jersey indie, nordic folk, dc indie, acoustic blues, brighton indie, scottish singer-songwriter, indie pop rap, acoustic pop, midwest emo, modern indie pop, alternative pop, new england shoegaze, irish singer-songwriter, alternative emo, american shoegaze, saskatchewan indie, nl folk, west virginia indie, la indie, alte, icelandic indie, midwest shoegaze, indie folk, taiwan indie, modern folk rock, indietronica, scottish indie, chinese singer-songwriter, chinese indie pop, alabama indie, latin alternative, toronto indie, indonesian singer-songwriter, lafayette indie, j-acoustic, singer-songwriter pop, alternative metal, taiwan singer-songwriter, cambridgeshire indie, tampa indie, traditional british folk, alternative pop rock, australian indie, turkish alternative, acoustic opm, deep acoustic pop, antilliaanse folklore, philly indie, kentucky indie, indie garage rock, charlotte nc indie, indian singer-songwriter, auckland indie, acoustic rock, pop folk, indie dream pop, oakland indie, gen z singer-songwriter, oc indie, thai folk pop, folk punk |
+| classical/jazz | russian romanticism, icelandic classical, british jazz, electro swing, modern blues rock, brazilian jazz, brazilian classical, german romanticism, modern jazz piano, canadian modern jazz, israeli classical piano, german ska, smooth jazz, american contemporary classical, instrumental funk, ska punk, western swing, modern blues, indie jazz, indie game soundtrack, ukrainian classical, ska, electric blues, blues-rock guitar, classical performance, british soundtrack, german orchestra, hot jazz, nordic soundtrack, jazz blues, jazz house, brega romantico, turkish classical, japanese classical, italian contemporary jazz, cool jazz, nordic classical piano, italian jazz, german baroque, latin classical, german soundtrack, chinese classical piano, jazzy dnb, electro jazz, wind symphony, man's orchestra, big band, italian baroque, early romantic era, memphis blues, rhythm and blues, chamber orchestra, movie tunes, traditional blues, classic soundtrack, czech classical, classical, orchestral performance, jazztronica, modern big band, classical piano, indonesian ska, neo-classical, turkish modern jazz, deep soundtrack, psychedelic blues-rock, instrumental soul, jazz, contemporary jazz, power blues-rock, jazz pop, calming instrumental, vintage jazz, chicago blues, italian jazz fusion, japanese contemporary classical, latin soundtrack, korean instrumental, turkish jazz, blues rock, russian modern classical, delta blues, post-romantic era, pop romantico, austrian orchestra, texas blues, oceania soundtrack, late romantic era, instrumental math rock, soul jazz, british blues, jazz piano, chinese jazz, canadian contemporary classical, instrumental hip hop, new romantic, ska argentino, string orchestra, chinese classical performance, russian ska, nu jazz, early modern classical, southern soul blues, swing, instrumental worship, acoustic blues, arabic instrumental, arabic jazz, baroque pop, batidao romantico, traditional ska, south african jazz, new jack swing, american modern classical, saskatchewan indie, classical era, baroque, jazz fusion, desert blues, vintage italian soundtrack, ska revival, neoclassical darkwave, orchestra, instrumental grime, classical organ, neo soul-jazz, baroque ensemble, jazz saxophone, jazz rap, jazz clarinet, swing italiano, jazz trumpet, soundtrack, british orchestra, ska mexicano, ska jazz, euroska, contemporary vocal jazz, jazz drums, country blues, jazz orchestra, canadian classical piano, turkish instrumental, punk blues, french soundtrack, bebop, piedmont blues, blues, norwegian classical, rebel blues, skate punk, christmas instrumental, radio symphony, orchestral soundtrack, harmonica blues, japanese soundtrack, free jazz, jazz cover, english baroque, concert band, jazz trombone, vocal jazz, soul blues |
+| hip hop/r&b | electronic trap, melodic rap, vapor soul, hip hop tuga, east coast hip hop, latin hip hop, memphis hip hop, conscious hip hop, philly drill, southern hip hop, trap, drill francais, uk alternative hip hop, afro soul, experimental hip hop, old school atlanta hip hop, british soul, chicago rap, gym phonk, mississippi hip hop, baton rouge rap, alternative r&b, rage rap, uk hip hop, turkce drill, italian hip hop, afro r&b, hamburg hip hop, trap latino, pop r&b, cloud rap, soul, ghanaian hip hop, finnish hip hop, r&b, canadian hip hop, pittsburgh rap, rap francais, contemporary r&b, trap argentino, detroit hip hop, political hip hop, french hip hop, emo rap, psychedelic hip hop, k-rap, chicago soul, bedroom r&b, drill, aggressive phonk, drill espanol, chill phonk, chicago drill, west coast rap, kansas city hip hop, northern soul, golden age hip hop, oakland hip hop, florida drill, old school hip hop, bass trap, drumless hip hop, german hip hop, rap latina, kentucky hip hop, argentine hip hop, canadian trap, rap algerien, instrumental soul, dark r&b, spanish hip hop, nottingham hip hop, new york drill, rap cristao, alternative hip hop, german alternative rap, country rap, indie soul, nashville hip hop, drift phonk, rap metal, rap metalcore, nyc rap, neo r&b, abstract hip hop, north carolina hip hop, drill and bass, atl trap, souldies, korean r&b, nz hip hop, lgbtq+ hip hop, soul jazz, dirty south rap, deep underground hip hop, trap italiana, pop soul, memphis phonk, instrumental hip hop, r&b en espanol, indie hip hop, trap boricua, meme rap, swedish soul, southern soul blues, hip hop, christian hip hop, indie pop rap, trap queen, canadian contemporary r&b, classic soul, pop rap, deep southern trap, scandinavian r&b, german drill, r&b francais, ohio hip hop, crunk, trap chileno, new orleans rap, turkish hip hop, arab trap, neo soul, memphis soul, neo soul-jazz, atl hip hop, florida rap, jazz rap, rap rock, dirty texas rap, rap, queens hip hop, portland hip hop, turkish trap, miami hip hop, underground hip hop, rap antillais, chinese r&b, brooklyn drill, atl drill, japanese old school hip hop, rap kreyol, phonk brasileiro, rap geek, sad rap, afro drill, norwegian hip hop, southern soul, houston rap, dark trap, gangster rap, south carolina hip hop, phonk, soul blues |
 

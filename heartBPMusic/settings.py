@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2u90))*ap1_-9m*2p(in+&^rk)avd1961zvfa4-&c#u5xv$n-2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False # Change to False when deploying
 
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
@@ -118,11 +118,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/assets/'
+# Setup static files for Vue.js
+# STATIC_URL = '/assets/'
 
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'client', 'dist', 'assets'),
+# ]
+
+# Setup static files for Deployment
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'client', 'dist', 'assets'),
+    os.path.join(BASE_DIR, 'myapp/static')
 ]
+
+# Directory where static files will be collected when running collectstatic
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
