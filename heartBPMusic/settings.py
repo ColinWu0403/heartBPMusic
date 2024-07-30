@@ -78,10 +78,10 @@ CORS_ALLOW_METHODS = [
     'PATCH'
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8000",
-    "https://heart-bpm-music.vercel.app",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://localhost:8000",
+#     "https://heart-bpm-music.vercel.app",
+# ]
 
 DATABASES = {
     'default': {
