@@ -19,41 +19,48 @@ def index(request):
 
 def get_bpm(request):
     if request.method == 'GET':
-        csv_files = [f for f in os.listdir('signals/csv') if f.endswith('.csv')]
+        try:
+            # asjgndsklgbsdkjglsadgsa
+            # will just give a random bpm for this to fucking work, since I don't want to commit my signals to github
+            
+            # csv_files = [f for f in os.listdir('..static/signals/csv') if f.endswith('.csv')]
 
-        if not csv_files:
-            return JsonResponse({'error': 'No ECG files found'}, status=404)
+            # if not csv_files:
+            #     return JsonResponse({'error': 'No ECG files found'}, status=404)
 
-        # Randomly select one CSV file
-        selected_file = random.choice(csv_files)
-        ecg_file_path = os.path.join('signals/csv', selected_file)
+            # Randomly select one CSV file
+            # selected_file = random.choice(csv_files)
+            # ecg_file_path = os.path.join('signals/csv', selected_file)
 
-        # get average bpm of signal
-        bpm, rounded_bpm = calculate_bpm(ecg_file_path)
-        # rounded_bpm = 150
+            # get average bpm of signal
+            # bpm, rounded_bpm = calculate_bpm(ecg_file_path)
+            # rounded_bpm = 150
 
-        rounded_bpm = round(rounded_bpm * random.uniform(1, 1.25), 4)
+            rounded_bpm = round(random.uniform(50, 150) * random.uniform(1, 1.25), 4)
 
-        # Store the BPM value in session for future use
-        unique_id = str(uuid.uuid4())
-        request.session['id'] = unique_id
-        request.session['bpm'] = rounded_bpm
+            # Store the BPM value in session for future use
+            unique_id = str(uuid.uuid4())
+            request.session['id'] = unique_id
+            request.session['bpm'] = rounded_bpm
 
-        SongRequestFeatures.objects.create(
-            id=unique_id,
-            bpm=rounded_bpm,
-            acousticness=0.0,
-            danceability=0.0,
-            energy=0.0,
-            instrumentalness=0.0,
-            liveness=0.0,
-            loudness=0.0,
-            speechiness=0.0,
-            mode=0,
-            valence=0.0
-        )
+            SongRequestFeatures.objects.create(
+                id=unique_id,
+                bpm=rounded_bpm,
+                acousticness=0.0,
+                danceability=0.0,
+                energy=0.0,
+                instrumentalness=0.0,
+                liveness=0.0,
+                loudness=0.0,
+                speechiness=0.0,
+                mode=0,
+                valence=0.0
+            )
 
-        return JsonResponse({'bpm': rounded_bpm, 'id': unique_id}, status=200)
+            return JsonResponse({'bpm': rounded_bpm, 'id': unique_id}, status=200)
+        except Exception as e:
+            logger.error(f"Error getting BPM: {e}")
+            return JsonResponse({'error': 'Error getting BPM'}, status=500)
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
 
