@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2u90))*ap1_-9m*2p(in+&^rk)avd1961zvfa4-&c#u5xv$n-2'
+dotenv_path = BASE_DIR / 'myapp/.env'
+load_dotenv(dotenv_path) if dotenv_path.exists() else None
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # Change to False when deploying
@@ -56,7 +60,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://heart-bpm-music.vercel.app/",
 ]
 
-CORS_ALLOW_CREDENTIALS=True
+CORS_ALLOW_CREDENTIALS = True
 
 DATABASES = {
     'default': {
