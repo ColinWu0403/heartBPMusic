@@ -57,7 +57,7 @@ def get_bpm(request):
             #     valence=0.0
             # )
 
-            logger.info(f"BPM generated: {rounded_bpm}, Session ID: {unique_id}")
+            # logger.info(f"BPM generated: {rounded_bpm}, Session ID: {unique_id}")
             
             return JsonResponse({'bpm': rounded_bpm, 'id': unique_id}, status=200)
         except Exception as e:
