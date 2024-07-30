@@ -52,13 +52,15 @@ const bpm = ref(null);
 const isLoading = ref(false);
 const hasFetchedBpm = ref(false);
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const fetchBpm = async () => {
   if (hasFetchedBpm.value) return;
 
   try {
     isLoading.value = true;
 
-    const response = await fetch("/api/get-bpm");
+    const response = await fetch(`${apiBaseUrl}/api/get-bpm`);
     if (!response.ok) {
       throw new Error("Failed to fetch BPM");
     }

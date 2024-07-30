@@ -21,9 +21,11 @@ onMounted(() => {
   console.log(song.value);
 });
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const getSongData = async () => {
   try {
-    const response = await fetch("/api/get-closest-song/", {
+    const response = await fetch(`${apiBaseUrl}/api/get-closest-song/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

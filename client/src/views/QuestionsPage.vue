@@ -123,6 +123,8 @@ import QuestionCard from "../components/QuestionCard.vue";
 import { QUESTIONS } from "../constants/index.js";
 import { buttonStyles } from "../constants/styles.js";
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const bpm = ref(null);
 const currentQuestion = ref(0);
 const questionKeys = Object.keys(QUESTIONS);
@@ -144,7 +146,7 @@ const isLastQuestion = computed(
 // Fetch BPM value
 const fetchBpmFromSession = async () => {
   try {
-    const response = await fetch("/api/get-bpm-from-session");
+    const response = await fetch(`${apiBaseUrl}/api/get-bpm-from-session`);
     const data = await response.json();
     bpm.value = data.bpm;
   } catch (error) {
@@ -212,7 +214,7 @@ const submitQuestions = async () => {
   };
 
   try {
-    const response = await fetch("/api/submit-questions/", {
+    const response = await fetch(`${apiBaseUrl}/api/submit-questions/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
