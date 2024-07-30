@@ -57,7 +57,7 @@
 
         <p
           v-if="isLastQuestion && errorMessage"
-          class="text-red-500 text-2xl mt-2"
+          class="text-red-500 font-medium text-xl mt-2"
         >
           {{ errorMessage }}
         </p>
@@ -108,7 +108,7 @@
 
         <p
           v-if="!isLastQuestion && errorMessage"
-          class="text-red-500 text-2xl mt-2"
+          class="text-red-500 font-medium text-xl mt-2"
         >
           {{ errorMessage }}
         </p>
