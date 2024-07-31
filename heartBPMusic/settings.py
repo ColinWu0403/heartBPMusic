@@ -27,7 +27,7 @@ load_dotenv(dotenv_path) if dotenv_path.exists() else None
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # Change to False when deploying
+DEBUG = True # Change to False when deploying
 
 # ALLOWED_HOSTS = ['.vercel.app', '.vercel.app.', '127.0.0.1', 'localhost']
 ALLOWED_HOSTS = ['*']
