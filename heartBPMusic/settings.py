@@ -178,4 +178,4 @@ SESSION_COOKIE_SECURE = True  # Ensure cookies are sent over HTTPS
 SESSION_COOKIE_HTTPONLY = True # Prevent client-side JavaScript from accessing the cookies
 SESSION_COOKIE_SAMESITE = 'None'  # Required for cross-domain cookies
 
-# SESSION_COOKIE_DOMAIN = '.vercel.app'
+SESSION_COOKIE_DOMAIN = None  # Remove or set correctly if needed
