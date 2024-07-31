@@ -5,6 +5,7 @@ import json
 import random
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from .models import SongRequestFeatures
 from .src.ecg import calculate_bpm
 from .src.knn import find_closest_song
@@ -77,7 +78,7 @@ def get_bpm_from_session(request):
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
 
-
+@csrf_exempt
 def submit_questions(request):
     if request.method == 'POST':
         # Clear previous session data
