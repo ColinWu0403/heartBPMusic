@@ -89,11 +89,13 @@ CORS_ALLOW_METHODS = [
 CSRF_COOKIE_SECURE = True # Ensure cookies are sent over HTTPS
 CSRF_COOKIE_SAMESITE = 'None'
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8000",
-    "https://heart-bpm-music.vercel.app",
-    "https://heartbpmusic.onrender.com",
-]
+CSRF_TRUSTED_ORIGINS = ['*']
+
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://localhost:8000",
+#     "https://heart-bpm-music.vercel.app",
+#     "https://heartbpmusic.onrender.com",
+# ]
 
 DATABASES = {
     'default': {
