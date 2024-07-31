@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # Change to False when deploying
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['https://heart-bpm-music.vercel.app', '127.0.0.1']
 
 # Application definition
 
@@ -78,10 +78,10 @@ CORS_ALLOW_METHODS = [
     'PATCH'
 ]
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "http://localhost:8000",
-#     "https://heart-bpm-music.vercel.app",
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "https://heart-bpm-music.vercel.app",
+]
 
 DATABASES = {
     'default': {
