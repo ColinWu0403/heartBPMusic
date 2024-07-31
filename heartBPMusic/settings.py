@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    # 'heartBPMusic.middleware.SessionCookieSameSiteWorkaround',
+    'heartBPMusic.middleware.SessionCookieSameSiteWorkaround',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,11 +59,7 @@ MIDDLEWARE = [
 
 # CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8000",
-    "https://heart-bpm-music.vercel.app",
-    "https://heartbpmusic.onrender.com",
-]
+CORS_ORIGIN_WHITELIST = ['*']
 
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:8000",
@@ -93,10 +89,10 @@ CORS_ALLOW_METHODS = [
 CSRF_COOKIE_SECURE = True # Ensure cookies are sent over HTTPS
 CSRF_COOKIE_SAMESITE = 'None'
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8000",
-    "https://heart-bpm-music.vercel.app",
-    "https://heartbpmusic.onrender.com",
+CSRF_TRUSTED_ORIGINS = [ '*'
+    # "http://localhost:8000",
+    # "https://heart-bpm-music.vercel.app",
+    # "https://heartbpmusic.onrender.com",
 ]
 
 DATABASES = {
