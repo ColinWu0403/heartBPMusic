@@ -27,7 +27,7 @@ load_dotenv(dotenv_path) if dotenv_path.exists() else None
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # Change to False when deploying
+DEBUG = False # Change to False when deploying
 
 # ALLOWED_HOSTS = ['.vercel.app', '.vercel.app.', '127.0.0.1', 'localhost']
 ALLOWED_HOSTS = ['*']
@@ -188,4 +188,3 @@ SESSION_COOKIE_HTTPONLY = True # Prevent client-side JavaScript from accessing t
 SESSION_COOKIE_SAMESITE = 'None'  # Required for cross-domain cookies
 
 SESSION_COOKIE_DOMAIN = None  # Remove or set correctly if needed
-# SESSION_COOKIE_DOMAIN = '.heartbpmusic.onrender.com'
