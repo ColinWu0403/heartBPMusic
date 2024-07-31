@@ -70,7 +70,6 @@ CORS_ALLOW_HEADERS = [
     'content-type',
     'authorization',
     'x-csrftoken',
-    'authorization'
     # Add other headers if needed
 ]
 
@@ -90,7 +89,7 @@ CSRF_COOKIE_SAMESITE = 'None'
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "https://heart-bpm-music.vercel.app",
-    "https://heartbpmusic.onrender.com"
+    "https://heartbpmusic.onrender.com",
 ]
 
 DATABASES = {
