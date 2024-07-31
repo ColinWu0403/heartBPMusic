@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'heartBPMusic.middleware.SessionCookieSameSiteWorkaround',
+    # 'heartBPMusic.middleware.SessionCookieSameSiteWorkaround',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
