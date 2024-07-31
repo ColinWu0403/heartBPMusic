@@ -62,9 +62,6 @@ const fetchBpm = async () => {
 
     const response = await fetch(`${apiBaseUrl}/api/get-bpm`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
       credentials: "include", // Important for cookies/auth
     });
     if (!response.ok) {
