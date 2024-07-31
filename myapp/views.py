@@ -40,22 +40,22 @@ def get_bpm(request):
 
             # Store the BPM value in session for future use
             unique_id = str(uuid.uuid4())
-            # request.session['id'] = unique_id
-            # request.session['bpm'] = rounded_bpm
+            request.session['id'] = unique_id
+            request.session['bpm'] = rounded_bpm
 
-            # SongRequestFeatures.objects.create(
-            #     id=unique_id,
-            #     bpm=rounded_bpm,
-            #     acousticness=0.0,
-            #     danceability=0.0,
-            #     energy=0.0,
-            #     instrumentalness=0.0,
-            #     liveness=0.0,
-            #     loudness=0.0,
-            #     speechiness=0.0,
-            #     mode=0,
-            #     valence=0.0
-            # )
+            SongRequestFeatures.objects.create(
+                id=unique_id,
+                bpm=rounded_bpm,
+                acousticness=0.0,
+                danceability=0.0,
+                energy=0.0,
+                instrumentalness=0.0,
+                liveness=0.0,
+                loudness=0.0,
+                speechiness=0.0,
+                mode=0,
+                valence=0.0
+            )
 
             # logger.info(f"BPM generated: {rounded_bpm}, Session ID: {unique_id}")
             
