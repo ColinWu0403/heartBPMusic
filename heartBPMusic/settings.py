@@ -66,7 +66,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'content-type',
     'authorization',
-    'X-CSRFToken'
+    'x-csrftoken',
+    'authorization'
     # Add other headers if needed
 ]
 
