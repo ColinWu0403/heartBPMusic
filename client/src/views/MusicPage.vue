@@ -30,6 +30,7 @@ const getSongData = async () => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include", // Ensure session cookies are sent
     });
 
     if (response.ok) {

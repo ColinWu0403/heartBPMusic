@@ -80,10 +80,13 @@ CORS_ALLOW_METHODS = [
     'HEAD'
 ]
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "http://localhost:8000",
-#     "https://heart-bpm-music.vercel.app",
-# ]
+CSRF_COOKIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "https://heart-bpm-music.vercel.app",
+    "https://heartbpmusic.onrender.com"
+]
 
 DATABASES = {
     'default': {
@@ -172,3 +175,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 SESSION_COOKIE_SECURE = True  # Ensure cookies are sent over HTTPS
+SESSION_COOKIE_HTTPONLY = True # Prevent client-side JavaScript from accessing the cookies
+SESSION_COOKIE_SAMESITE = 'None'  # Required for cross-domain cookies
+
+SESSION_COOKIE_DOMAIN = '.vercel.app'
