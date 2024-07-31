@@ -29,12 +29,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # Change to False when deploying
 
-ALLOWED_HOSTS = [
-    'heart-bpm-music.vercel.app',
-    '.heart-bpm-music.vercel.app',
-    '127.0.0.1',
-    'localhost'
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+
 # ALLOWED_HOSTS = ['*']
 
 # Application definition
