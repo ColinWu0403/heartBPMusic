@@ -5,6 +5,7 @@ import json
 import random
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from .models import SongRequestFeatures
 from .src.ecg import calculate_bpm
 from .src.knn import find_closest_song
@@ -40,22 +41,22 @@ def get_bpm(request):
 
             # Store the BPM value in session for future use
             unique_id = str(uuid.uuid4())
-            # request.session['id'] = unique_id
-            # request.session['bpm'] = rounded_bpm
+            request.session['id'] = unique_id
+            request.session['bpm'] = rounded_bpm
 
-            # SongRequestFeatures.objects.create(
-            #     id=unique_id,
-            #     bpm=rounded_bpm,
-            #     acousticness=0.0,
-            #     danceability=0.0,
-            #     energy=0.0,
-            #     instrumentalness=0.0,
-            #     liveness=0.0,
-            #     loudness=0.0,
-            #     speechiness=0.0,
-            #     mode=0,
-            #     valence=0.0
-            # )
+            SongRequestFeatures.objects.create(
+                id=unique_id,
+                bpm=rounded_bpm,
+                acousticness=0.0,
+                danceability=0.0,
+                energy=0.0,
+                instrumentalness=0.0,
+                liveness=0.0,
+                loudness=0.0,
+                speechiness=0.0,
+                mode=0,
+                valence=0.0
+            )
 
             # logger.info(f"BPM generated: {rounded_bpm}, Session ID: {unique_id}")
             
@@ -77,7 +78,7 @@ def get_bpm_from_session(request):
     else:
         return JsonResponse({'error': 'Method not allowed'}, status=405)
 
-
+@csrf_exempt
 def submit_questions(request):
     if request.method == 'POST':
         # Clear previous session data

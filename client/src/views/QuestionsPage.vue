@@ -154,6 +154,7 @@ const fetchBpmFromSession = async () => {
         "Content-Type": "application/json",
         "X-CSRFToken": csrftoken,
       },
+      credentials: "include", // Ensure session cookies are sent
     });
     const data = await response.json();
     bpm.value = data.bpm;
@@ -201,7 +202,7 @@ function getCookie(name) {
   const cookieValue = document.cookie.match(
     "(^|;)\\s*" + name + "\\s*=\\s*([^;]+)"
   );
-  return cookieValue ? cookieValue.pop() : "";
+  return cookieValue ? decodeURIComponent(cookieValue.pop()) : "";
 }
 
 // Handle form submission
@@ -227,6 +228,7 @@ const submitQuestions = async () => {
         "Content-Type": "application/json",
         "X-CSRFToken": csrftoken,
       },
+      credentials: "include", // Ensure session cookies are sent
       body: JSON.stringify(formData),
     });
 

@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # Change to False when deploying
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -46,26 +46,32 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'heartBPMusic.middleware.SessionCookieSameSiteWorkaround', # Custom middleware
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+# CORS_ORIGIN_WHITELIST = ['*']
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "https://heart-bpm-music.vercel.app",
+    "https://heartbpmusic.onrender.com",
 ]
 
-CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_HEADERS = [
     'content-type',
     'authorization',
-    'x-CSRFToken'
+    'x-csrftoken',
     # Add other headers if needed
 ]
 
@@ -75,12 +81,19 @@ CORS_ALLOW_METHODS = [
     'OPTIONS',
     'PUT',
     'DELETE',
-    'PATCH'
+    'PATCH',
+    'HEAD'
 ]
+
+CSRF_COOKIE_SECURE = True # Ensure cookies are sent over HTTPS
+CSRF_COOKIE_SAMESITE = 'None'
+
+# CSRF_TRUSTED_ORIGINS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "https://heart-bpm-music.vercel.app",
+    "https://heartbpmusic.onrender.com",
 ]
 
 DATABASES = {
@@ -170,3 +183,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 SESSION_COOKIE_SECURE = True  # Ensure cookies are sent over HTTPS
+SESSION_COOKIE_HTTPONLY = True # Prevent client-side JavaScript from accessing the cookies
+SESSION_COOKIE_SAMESITE = 'None'  # Required for cross-domain cookies
+
+SESSION_COOKIE_DOMAIN = None  # Remove or set correctly if needed
