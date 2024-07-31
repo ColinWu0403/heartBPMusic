@@ -66,7 +66,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'content-type',
     'authorization',
-    'x-CSRFToken'
+    'X-CSRFToken'
     # Add other headers if needed
 ]
 
@@ -81,6 +81,7 @@ CORS_ALLOW_METHODS = [
 ]
 
 CSRF_COOKIE_SECURE = True # Ensure cookies are sent over HTTPS
+CSRF_COOKIE_SAMESITE = 'None'
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
