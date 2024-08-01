@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col justify-center items-center min-h-[100vh] px-4">
-    <h1 class="text-white text-5xl font-bold mb-6">Heart Music Recommender</h1>
+    <h1 class="text-white text-5xl font-bold mb-6">Heart BPM Music</h1>
     <h4 class="text-white text-xl font-medium mb-10 text-center">
       Using our song recommendation algorithm and your heart's bpm,<br />we
       found this to be the closest match:

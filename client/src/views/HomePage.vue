@@ -8,7 +8,7 @@
       <p class="text-white text-lg mb-16">
         Discover music that matches your heart rate.
         <br />
-        Enter your BPM to get started!
+        Find the perfect song to match your mood.
       </p>
       <button
         class="inline-flex w-72 h-12 bg-red-600 text-lg text-white overflow-hidden rounded-lg p-2 items-center justify-center hover:bg-white hover:text-red-600 transition-all duration-150 ease-in font-bold"
