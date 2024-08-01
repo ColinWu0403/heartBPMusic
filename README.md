@@ -4,18 +4,18 @@ Heart BPMusic is a website that recommends songs based on your heart's BPM (beat
 
 The project integrates a Django REST API with a Vue.js frontend to deliver a seamless user experience. It also uses Machine Learning with scikit-learn to provide personalized music recommendations.
 
-### Technologies Used
+## Technologies Used
 
 - **Django REST API:** Serves as the backend for handling requests related to ECG data, BPM calculations, and music recommendations. It processes incoming data, runs the recommendation algorithm, and returns a song recommendation in the form of a spotify url.
 - **Vue.js:** Provides an interactive and responsive user interface where users can input their BPM and mood to view song recommendations.
 - **scikit-learn:** Powers the recommendation system by analyzing the user input and finds song recommendations. I used scikit-learn's knn model to find the closest matching song to any given parameters.
 - **Spotify Web API:** Mainly used to collect song data for my dataset. I created a few python scripts to get a wide variety of artists, where most genres are represented. I then got their top songs' data for my dataset.
 
-### Dataset
+## Dataset
 
 I created my own dataset consisting of song characteristics based on how Spotify defines song information in their web API documentation. The dataset of songs includes the song name, artists involved, genres, key, bpm and also includes audio features like mood descriptors and other musical attributes.
 
-#### Spotify Audio Features
+### Spotify Audio Features
 
 The key audio features from Spotify used in the recommendation system include:
 
@@ -29,21 +29,28 @@ The key audio features from Spotify used in the recommendation system include:
 - **Liveness:** Indicates the presence of an audience in the recording, useful for distinguishing between studio and live recordings. A value above 0.8 provides strong likelihood that the track is live.
 - **Loudness:** The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. The values typically range between -60 and 0 db (represented as negative floats).
 - **Mode:** Refers to the musical mode (major or minor) of the song, affecting the song's emotional quality. It is an integer that is either 1 (major) or 0 (minor).
-- **Speechiness:** Measures the presence of spoken words in a track, helping to identify tracks with more speech-like qualities versus more instrumental tracks. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
+- **Speechiness:** Measures the presence of spoken words in a track, helping to identify tracks with more speech-like qualities versus more instrumental tracks.
+  Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.
 - **Valence:** Indicates the musical positiveness conveyed by a track, assisting in aligning the mood of the song with the user's mood input. Values closer to 1.0 sound more positive (e.g. happy, cheerful, euphoric), while values closer to 0.0 sound more negative (e.g. sad, depressed, angry).
 
-#### Dataset Stats
+### Dataset Stats
 
-The entire dataset of artists can be found in [artists_data.csv](myapp/static/data/artists_data.csv).
+The dataset of artists can be found in [artists_data.csv](myapp/static/data/artists_data.csv).
 
-The entire dataset of songs can be found in [songs_data.csv](myapp/static/data/songs_data.csv).
+The dataset of songs can be found in [songs_data.csv](myapp/static/data/songs_data.csv).
 
-I also have two READMEs containing statistics of the artists and songs datasets which can provide some insight on how my dataset looks like: [artists_stats](myapp/static/data/artist_stats.md) and [songs_stats](myapp/static/data/songs_stats.md).
+I also have two documents containing statistics of the artists and songs datasets which can provide some insight on how my dataset looks like: [artists_stats](myapp/static/data/artist_stats.md) and [songs_stats](myapp/static/data/songs_stats.md).
 
-### Setup Project
+## Setup Project
 
 #### Install Dependencies
 
 ```
 pip install --no-cache-dir -r requirements.txt
+```
+
+#### Run Django
+
+```
+python manage.py runserver
 ```
