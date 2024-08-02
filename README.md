@@ -11,6 +11,35 @@ The project integrates a Django REST API with a Vue.js frontend to deliver a sea
 - **scikit-learn:** Powers the recommendation system by analyzing the user input and finds song recommendations. I used scikit-learn's knn model to find the closest matching song to any given parameters.
 - **Spotify Web API:** Mainly used to collect song data for my dataset. I created a few python scripts to get a wide variety of artists, where most genres are represented. I then got their top songs' data for my dataset.
 
+## Setup Project
+
+To get started with the project, you will need to have Python 3.11 and node.js/npm installed.
+Running the Django server will also build the Vue code into static HTML, CSS, and JS.
+
+#### Install Dependencies
+
+```
+pip install --no-cache-dir -r requirements.txt
+```
+
+#### Run Django
+
+```
+python manage.py runserver
+```
+
+#### Build Vue
+
+```
+npm run build
+```
+
+#### Run Vue in localhost
+
+```
+npm run dev
+```
+
 ## Dataset
 
 I created my own dataset consisting of song characteristics based on how Spotify defines song information in their web API documentation. The dataset of songs includes the song name, artists involved, genres, key, bpm and also includes audio features like mood descriptors and other musical attributes.
@@ -40,17 +69,3 @@ The dataset of artists can be found in [artists_data.csv](myapp/static/data/arti
 The dataset of songs can be found in [songs_data.csv](myapp/static/data/songs_data.csv).
 
 I also have two documents containing statistics of the artists and songs datasets which can provide some insight on how my dataset looks like: [artists_stats](myapp/static/data/artist_stats.md) and [songs_stats](myapp/static/data/songs_stats.md).
-
-## Setup Project
-
-#### Install Dependencies
-
-```
-pip install --no-cache-dir -r requirements.txt
-```
-
-#### Run Django
-
-```
-python manage.py runserver
-```
