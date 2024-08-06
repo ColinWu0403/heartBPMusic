@@ -68,9 +68,16 @@ def calculate_song_statistics(df):
     speechiness_by_genre = defaultdict(list)
     valence_by_genre = defaultdict(list)
     mode_by_genre = defaultdict(lambda: {'major': 0, 'minor': 0})
+    artist_by_genre_counter = defaultdict(lambda: defaultdict(set))  # Using set to avoid overcounting
+    unique_songs_by_artist = defaultdict(set)
+        
+    for _, row in df.iterrows():        
+        genre_field = row['genre']
+        if isinstance(genre_field, str):  # Check if the genre field is a string
+            genres = genre_field.split('; ')
+        else:
+            genres = []  # Handle the case where the genre is missing or not a string
 
-    for _, row in df.iterrows():
-        genres = row['genre'].split('; ')
         artists = row['artists'].split('; ')
         key = row['key']
         bpm = row['bpm']
@@ -88,6 +95,8 @@ def calculate_song_statistics(df):
         artist_counter.update(artists)
         key_counter.update([key])
 
+        song_id = row['id']
+        
         for genre in genres:
             categories = map_genre_to_broad_category(genre, genre_mapping)
             for category in categories:
@@ -105,6 +114,13 @@ def calculate_song_statistics(df):
                     mode_by_genre[category]['major'] += 1
                 else:
                     mode_by_genre[category]['minor'] += 1
+  
+                for artist in artists:
+                    artist_by_genre_counter[category][artist].add(song_id)  # Use set to avoid overcounting
+    
+    # Convert counts to the number of unique songs
+    artist_by_genre_counter = {genre: {artist: len(songs) for artist, songs in artists.items()}
+                               for genre, artists in artist_by_genre_counter.items()}
 
     # Calculate average BPM
     average_bpm = df['bpm'].mean()
@@ -165,9 +181,9 @@ def calculate_song_statistics(df):
         'Average Speechiness by Genre': average_speechiness_by_genre,
         'Average Valence by Genre': average_valence_by_genre,
         'Mode by Genre': mode_by_genre,
-
         'Total Artists': len(artist_counter),
         'Total Genres': len(genre_counter),
+        'Top Artists by Genre': {genre: sorted(artists.items(), key=lambda x: x[1], reverse=True)[:50] for genre, artists in artist_by_genre_counter.items()},
     }
 
     return stats
@@ -282,6 +298,15 @@ def save_song_statistics(stats, file_path):
             ratio = f"{major / minor}" if minor != 0 else "∞"
             f.write(f"| {genre} | {major} | {minor} | {ratio} |\n")
         f.write("\n")
+
+        # Top Artists by Genre
+        f.write("\n## Top Artists by Genre Category\n")
+        for genre, artists in stats['Top Artists by Genre'].items():
+            f.write(f"\n### {genre}\n")
+            f.write("| Artist | Number of Songs |\n")
+            f.write("| --- | ----- |\n")
+            for artist, count in artists:
+                f.write(f"| {artist} | {count} |\n")
 
         # Print Represented Genres
         f.write("### Represented Genres\n")
