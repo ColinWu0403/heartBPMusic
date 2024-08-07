@@ -21,8 +21,8 @@ def index(request):
 def get_bpm(request):
     if request.method == 'GET':
         try:
-            # asjgndsklgbsdkjglsadgsa
-            # will just give a random bpm for this to fucking work, since I don't want to commit my signals to github
+            # will just give a random bpm for this to work, since I don't want to commit my signals to github
+            # replace rounded_bpm with csv code to work:
             
             # csv_files = [f for f in os.listdir('..static/signals/csv') if f.endswith('.csv')]
 
@@ -35,8 +35,8 @@ def get_bpm(request):
 
             # get average bpm of signal
             # bpm, rounded_bpm = calculate_bpm(ecg_file_path)
-            # rounded_bpm = 150
 
+            # random bpm, replace with commented out code above if you want to read ECG signal bpm
             rounded_bpm = round(random.uniform(50, 150) * random.uniform(1, 1.25), 4)
 
             # Store the BPM value in session for future use
